@@ -1,26 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Design Cybersécurité/Tech Premium */
+  --primary: #00D9C5;
+  --primary-dark: #00B8A6;
+  --bg-dark: #0A0A0A;
+  --bg-card: #1A1A1A;
+  --bg-section: #111111;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --accent-purple: #B8B5FF;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
+
+/* Boutons */
+.btn-primary {
+  @apply bg-[#00D9C5] text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300;
+  box-shadow: 0 0 20px rgba(0, 217, 197, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 40px rgba(0, 217, 197, 0.5);
+}
+
+.btn-secondary {
+  @apply border-2 border-[#00D9C5] text-[#00D9C5] px-8 py-4 rounded-full font-semibold hover:bg-[#00D9C5] hover:text-black transition-all duration-300 bg-transparent;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight;
+}
+
+.section-title-cyan {
+  @apply text-4xl md:text-5xl font-bold text-[#00D9C5] mb-6 tracking-tight;
+}
+
+/* Cards avec effet glow */
+.card-dark {
+  @apply bg-[#1A1A1A] rounded-3xl p-8 border border-white/10 transition-all duration-400;
+}
+
+.card-dark:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(0, 217, 197, 0.2);
+}
+
+/* Animation pour le carrousel des partenaires */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Countdown styles */
+.countdown-item {
+  @apply flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 min-w-[100px] border border-white/10;
+}
+
+.countdown-number {
+  @apply text-5xl md:text-7xl font-bold text-[#00D9C5] font-mono;
+}
+
+.countdown-label {
+  @apply text-sm text-white/60 uppercase tracking-widest mt-2;
+}
+
+/* Glow effect */
+.glow-cyan {
+  box-shadow: 0 0 40px rgba(0, 217, 197, 0.3);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(0, 217, 197, 0.5);
+}
+
+/* Gradient backgrounds */
+.bg-gradient-dark {
+  background: linear-gradient(180deg, #0A0A0A 0%, #111111 100%);
+}
+
+.bg-gradient-card {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
+}
+
+/* Border gradient */
+.border-gradient {
+  border: 2px solid transparent;
+  background: linear-gradient(#1A1A1A, #1A1A1A) padding-box,
+              linear-gradient(135deg, #00D9C5, #B8B5FF) border-box;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 217, 197, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 217, 197, 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Mesh gradient overlay */
+.mesh-gradient {
+  background: 
+    radial-gradient(at 40% 20%, rgba(0, 217, 197, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(184, 181, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(0, 217, 197, 0.1) 0px, transparent 50%);
+}
+
+/* Stats counter */
+.stat-number {
+  @apply text-5xl md:text-6xl font-bold text-[#00D9C5] tracking-tight;
+}
+
+.stat-label {
+  @apply text-sm text-white/60 uppercase tracking-widest mt-2;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00D9C5;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }
