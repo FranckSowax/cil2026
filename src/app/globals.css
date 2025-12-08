@@ -25,9 +25,9 @@ body {
   color: var(--text-primary);
 }
 
-/* Boutons */
+/* Boutons - Ultra Responsive */
 .btn-primary {
-  @apply bg-[#00D9C5] text-black px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300;
+  @apply bg-[#00D9C5] text-black px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 text-sm sm:text-base;
   box-shadow: 0 0 20px rgba(0, 217, 197, 0.3);
 }
 
@@ -36,15 +36,16 @@ body {
 }
 
 .btn-secondary {
-  @apply border-2 border-[#00D9C5] text-[#00D9C5] px-8 py-4 rounded-full font-semibold hover:bg-[#00D9C5] hover:text-black transition-all duration-300 bg-transparent;
+  @apply border-2 border-[#00D9C5] text-[#00D9C5] px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:bg-[#00D9C5] hover:text-black transition-all duration-300 bg-transparent text-sm sm:text-base;
 }
 
+/* Titres - Ultra Responsive */
 .section-title {
-  @apply text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight;
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight;
 }
 
 .section-title-cyan {
-  @apply text-4xl md:text-5xl font-bold text-[#00D9C5] mb-6 tracking-tight;
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#00D9C5] mb-4 sm:mb-6 tracking-tight;
 }
 
 /* Cards avec effet glow */
@@ -71,17 +72,17 @@ body {
   animation: scroll 30s linear infinite;
 }
 
-/* Countdown styles */
+/* Countdown styles - Ultra Responsive */
 .countdown-item {
-  @apply flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 min-w-[100px] border border-white/10;
+  @apply flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 min-w-[60px] sm:min-w-[80px] md:min-w-[100px] border border-white/10;
 }
 
 .countdown-number {
-  @apply text-5xl md:text-7xl font-bold text-[#00D9C5] font-mono;
+  @apply text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#00D9C5] font-mono;
 }
 
 .countdown-label {
-  @apply text-sm text-white/60 uppercase tracking-widest mt-2;
+  @apply text-[10px] sm:text-xs md:text-sm text-white/60 uppercase tracking-wider sm:tracking-widest mt-1 sm:mt-2;
 }
 
 /* Glow effect */
@@ -146,13 +147,65 @@ body {
     radial-gradient(at 0% 50%, rgba(0, 217, 197, 0.1) 0px, transparent 50%);
 }
 
-/* Stats counter */
+/* Stats counter - Ultra Responsive */
 .stat-number {
-  @apply text-5xl md:text-6xl font-bold text-[#00D9C5] tracking-tight;
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#00D9C5] tracking-tight;
 }
 
 .stat-label {
-  @apply text-sm text-white/60 uppercase tracking-widest mt-2;
+  @apply text-xs sm:text-sm text-white/60 uppercase tracking-wider sm:tracking-widest mt-1 sm:mt-2;
+}
+
+/* Responsive utilities */
+.container-responsive {
+  @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+.hero-title {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight;
+}
+
+.hero-subtitle {
+  @apply text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto;
+}
+
+/* Cards responsive */
+.card-responsive {
+  @apply bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-white/10;
+}
+
+/* Grid responsive helpers */
+.grid-responsive-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6;
+}
+
+.grid-responsive-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+}
+
+.grid-responsive-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+}
+
+/* Touch-friendly spacing */
+@media (max-width: 640px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Better text scaling */
+.text-responsive-sm {
+  @apply text-xs sm:text-sm;
+}
+
+.text-responsive-base {
+  @apply text-sm sm:text-base;
+}
+
+.text-responsive-lg {
+  @apply text-base sm:text-lg md:text-xl;
 }
 
 /* Scrollbar styling */

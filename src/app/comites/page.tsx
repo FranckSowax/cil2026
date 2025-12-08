@@ -85,18 +85,18 @@ export default function ComitesPage() {
   return (
     <div className="bg-[#0A0A0A]">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00D9C5]/10 rounded-full filter blur-[100px]"></div>
+        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-              <span className="text-sm text-[#B0B0B0]">Équipe organisatrice</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
+              <span className="text-xs sm:text-sm text-[#B0B0B0]">Équipe organisatrice</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
               Comités du <span className="text-[#00D9C5]">Colloque</span>
             </h1>
-            <p className="text-xl text-[#B0B0B0] max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
               Découvrez les membres des comités d&apos;organisation et scientifique du CIL 2026
             </p>
           </div>
@@ -104,23 +104,23 @@ export default function ComitesPage() {
       </section>
 
       {/* Coordination */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-12 sm:py-16 md:py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="section-title">Coordination Générale</h2>
-            <p className="text-[#B0B0B0] max-w-2xl mx-auto">
+            <p className="text-[#B0B0B0] text-sm sm:text-base max-w-2xl mx-auto">
               L&apos;équipe de coordination du CIL 2026
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {coordination.map((member) => (
               <div 
                 key={member.name}
-                className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10 hover:border-[#00D9C5]/30 transition-all group"
+                className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-[#00D9C5]/30 transition-all group"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="w-10 sm:w-14 h-10 sm:h-14 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <User className="w-7 h-7 text-black" />
                   </div>
                   <div className="flex-grow">

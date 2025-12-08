@@ -138,18 +138,18 @@ export default function ProgrammePage() {
   return (
     <div className="bg-[#0A0A0A]">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-20 right-20 w-72 h-72 bg-[#B8B5FF]/10 rounded-full filter blur-[100px]"></div>
+        <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-40 sm:w-72 h-40 sm:h-72 bg-[#B8B5FF]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-              <span className="text-sm text-[#B0B0B0]">23 - 27 Mars 2026</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
+              <span className="text-xs sm:text-sm text-[#B0B0B0]">23 - 27 Mars 2026</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
               Programme du <span className="text-[#00D9C5]">Colloque</span>
             </h1>
-            <p className="text-xl text-[#B0B0B0] max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
               5 jours d&apos;échanges, de conférences et d&apos;ateliers sur l&apos;Intelligence Artificielle 
               et les Dynamiques des Organisations
             </p>
@@ -158,15 +158,15 @@ export default function ProgrammePage() {
       </section>
 
       {/* Timeline Navigation */}
-      <section className="py-6 bg-[#111111] border-b border-white/10 sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 bg-[#111111] border-b border-white/10 sticky top-16 sm:top-20 z-40">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="flex justify-center">
-            <div className="inline-flex bg-[#1A1A1A] rounded-2xl p-1 border border-white/10">
+            <div className="inline-flex bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-0.5 sm:p-1 border border-white/10 overflow-x-auto">
               {days.map((day) => (
                 <button
                   key={day.key}
                   onClick={() => setActiveDay(day.key)}
-                  className={`px-5 py-3 rounded-xl font-medium transition-all ${
+                  className={`px-3 sm:px-5 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all text-xs sm:text-sm ${
                     activeDay === day.key
                       ? 'bg-[#00D9C5] text-black shadow-lg'
                       : 'text-[#B0B0B0] hover:text-white hover:bg-white/5'

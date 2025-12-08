@@ -29,16 +29,16 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
     }`}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <span className="text-black font-bold text-sm">CIL</span>
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
+            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span className="text-black font-bold text-xs sm:text-sm">CIL</span>
             </div>
-            <div className="hidden sm:block">
-              <span className="font-bold text-white text-lg">CIL 2026</span>
-              <span className="block text-xs text-[#B0B0B0]">Libreville • 23-27 Mars</span>
+            <div className="hidden xs:block sm:block">
+              <span className="font-bold text-white text-sm sm:text-lg">CIL 2026</span>
+              <span className="hidden sm:block text-xs text-[#B0B0B0]">Libreville • 23-27 Mars</span>
             </div>
           </Link>
 
@@ -76,42 +76,42 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden p-1.5 sm:p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-lg">
-            <div className="flex flex-col space-y-1">
+          <div className="lg:hidden py-3 sm:py-4 border-t border-white/10 bg-[#0A0A0A]/95 backdrop-blur-lg absolute left-0 right-0 top-full">
+            <div className="flex flex-col space-y-0.5 sm:space-y-1 px-3 sm:px-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-4 py-3 text-[#B0B0B0] hover:text-[#00D9C5] hover:bg-white/5 rounded-lg transition-colors"
+                  className="px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[#B0B0B0] hover:text-[#00D9C5] hover:bg-white/5 rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 px-4 pt-4 mt-2 border-t border-white/10">
+              <div className="flex flex-col space-y-2 pt-3 sm:pt-4 mt-2 border-t border-white/10">
                 <Link
                   href="/appel-communications"
-                  className="py-3 text-center text-[#00D9C5] border border-[#00D9C5]/30 rounded-full"
+                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-[#00D9C5] border border-[#00D9C5]/30 rounded-full"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Appel à papiers
                 </Link>
                 <Link
                   href="/inscription"
-                  className="py-3 text-center text-black bg-[#00D9C5] rounded-full font-semibold"
+                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-black bg-[#00D9C5] rounded-full font-semibold"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   S&apos;inscrire

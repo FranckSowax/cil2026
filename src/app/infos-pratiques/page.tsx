@@ -85,18 +85,18 @@ export default function InfosPratiquesPage() {
   return (
     <div className="bg-[#0A0A0A]">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-[#00D9C5]/10 rounded-full filter blur-[100px]"></div>
+        <div className="absolute bottom-10 sm:bottom-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-              <span className="text-sm text-[#B0B0B0]">Contact & Infos</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
+              <span className="text-xs sm:text-sm text-[#B0B0B0]">Contact & Infos</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
               Informations <span className="text-[#00D9C5]">Pratiques</span>
             </h1>
-            <p className="text-xl text-[#B0B0B0] max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
               Tout ce que vous devez savoir pour préparer votre venue au CIL 2026
             </p>
           </div>
