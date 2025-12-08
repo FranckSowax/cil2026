@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, CreditCard, Smartphone, Building, AlertCircle, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Check, CreditCard, Smartphone, Building, AlertCircle, ArrowRight, ShoppingCart } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 const pricingCategories = [
   {
@@ -58,6 +61,10 @@ const paymentMethods = [
 ];
 
 export default function InscriptionPage() {
+  const router = useRouter();
+  const { addItem, items, getItemCount, clearCart } = useCart();
+  const cartItemCount = getItemCount();
+
   const [formData, setFormData] = useState({
     lastName: '',
     firstName: '',
@@ -85,7 +92,19 @@ export default function InscriptionPage() {
   };
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('fr-FR').format(price) + ' FCFA';
+    return new Intl.NumberFormat('fr-FR').format(price);
+  };
+
+  const handleAddToCart = (pricing: { category: string; price: number }) => {
+    // Clear existing items first (only one registration type at a time)
+    clearCart();
+    
+    addItem({
+      id: pricing.category.toLowerCase().replace(/\s+/g, '-'),
+      name: `Inscription CIL 2026`,
+      category: pricing.category,
+      price: pricing.price,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -172,64 +191,91 @@ export default function InscriptionPage() {
       </section>
 
       {/* Tarifs */}
-      <section id="tarifs" className="py-20 bg-[#111111]">
+      <section id="tarifs" className="py-12 sm:py-16 md:py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="section-title">Grille Tarifaire</h2>
-            <p className="text-[#B0B0B0]">
+            <p className="text-[#B0B0B0] text-sm sm:text-base">
               Choisissez la formule adaptée à votre profil
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8 sm:mb-12">
             {pricingCategories.map((pricing, index) => (
               <div 
                 key={pricing.category}
-                className={`relative bg-[#1A1A1A] rounded-3xl overflow-hidden border transition-all duration-300 hover:scale-105 ${
-                  index === 2 ? 'border-[#00D9C5] shadow-[0_0_40px_rgba(0,217,197,0.2)]' : 'border-white/10 hover:border-white/20'
+                className={`relative bg-[#1A1A1A] rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-300 hover:scale-[1.02] sm:hover:scale-105 ${
+                  index === 2 ? 'border-[#00D9C5] shadow-[0_0_30px_rgba(0,217,197,0.2)] sm:shadow-[0_0_40px_rgba(0,217,197,0.2)]' : 'border-white/10 hover:border-white/20'
                 }`}
               >
                 {index === 2 && (
-                  <div className="absolute -top-0 left-0 right-0 bg-[#00D9C5] text-black text-center py-2 text-xs font-bold">
+                  <div className="absolute -top-0 left-0 right-0 bg-[#00D9C5] text-black text-center py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold">
                     POPULAIRE
                   </div>
                 )}
-                <div className={`p-5 ${index === 2 ? 'pt-10' : ''}`}>
-                  <h3 className="font-bold text-sm text-white mb-3 min-h-[40px]">{pricing.category}</h3>
-                  <div className="mb-4">
-                    <div className="text-2xl font-bold text-[#00D9C5]">
+                <div className={`p-4 sm:p-5 ${index === 2 ? 'pt-8 sm:pt-10' : ''}`}>
+                  <h3 className="font-bold text-xs sm:text-sm text-white mb-2 sm:mb-3 min-h-[32px] sm:min-h-[40px]">{pricing.category}</h3>
+                  <div className="mb-3 sm:mb-4">
+                    <div className="text-xl sm:text-2xl font-bold text-[#00D9C5]">
                       {formatPrice(pricing.price)}
                     </div>
+                    <span className="text-[#B0B0B0] text-xs">FCFA</span>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5 sm:space-y-2 mb-4">
                     {pricing.features.map((feature) => (
-                      <li key={feature} className="flex items-start space-x-2 text-xs">
+                      <li key={feature} className="flex items-start space-x-2 text-[10px] sm:text-xs">
                         <Check className="w-3 h-3 text-[#00D9C5] flex-shrink-0 mt-0.5" />
                         <span className="text-[#B0B0B0]">{feature}</span>
                       </li>
                     ))}
                   </ul>
+                  <button
+                    onClick={() => handleAddToCart(pricing)}
+                    className={`w-full py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 ${
+                      index === 2
+                        ? 'bg-[#00D9C5] text-black hover:brightness-110'
+                        : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                    }`}
+                  >
+                    <ShoppingCart className="w-3 sm:w-4 h-3 sm:h-4" />
+                    Choisir
+                  </button>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Options supplémentaires */}
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 max-w-2xl mx-auto">
-            <h3 className="font-bold text-lg text-[#00D9C5] mb-4 text-center">Option Pré-Colloque</h3>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-              <div className="flex justify-between items-center">
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-2xl mx-auto">
+            <h3 className="font-bold text-base sm:text-lg text-[#00D9C5] mb-3 sm:mb-4 text-center">Option Pré-Colloque</h3>
+            <div className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
-                  <span className="font-medium text-white">Ateliers de formation (23-24 mars)</span>
-                  <p className="text-sm text-[#B0B0B0]">NVIVO et Introduction aux Équations structurelles (SEM)</p>
+                  <span className="font-medium text-white text-sm sm:text-base">Ateliers de formation (23-24 mars)</span>
+                  <p className="text-xs sm:text-sm text-[#B0B0B0]">NVIVO et Introduction aux Équations structurelles (SEM)</p>
                 </div>
-                <span className="text-[#00D9C5] font-bold">{formatPrice(workshopPrice)}</span>
+                <span className="text-[#00D9C5] font-bold text-lg">{formatPrice(workshopPrice)} FCFA</span>
               </div>
             </div>
-            <p className="text-center text-sm text-gray-500 mt-4">
+            <p className="text-center text-xs sm:text-sm text-[#B0B0B0] mt-3 sm:mt-4">
               En plus des frais de participation au colloque
             </p>
           </div>
+
+          {/* Cart CTA */}
+          {cartItemCount > 0 && (
+            <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50">
+              <Link
+                href="/panier"
+                className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 py-3 sm:py-4 bg-[#00D9C5] text-black font-bold rounded-full shadow-2xl hover:scale-105 transition-all text-sm sm:text-base"
+                style={{ boxShadow: '0 0 40px rgba(0, 217, 197, 0.5)' }}
+              >
+                <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
+                Voir le panier ({cartItemCount})
+                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
