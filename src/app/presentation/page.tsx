@@ -107,7 +107,7 @@ export default function PresentationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Le Colloque International de Libreville</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">À propos du colloque</h2>
               <p className="text-gray-600 mb-6 leading-relaxed text-lg">
                 L&apos;intelligence artificielle (IA) s&apos;impose aujourd&apos;hui comme un moteur majeur des transformations 
                 contemporaines, aussi bien dans les secteurs publics que privés. L&apos;ampleur des innovations 
@@ -136,7 +136,7 @@ export default function PresentationPage() {
                   </div>
                   <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="text-4xl font-bold text-[#4169E1]">5</div>
-                    <div className="text-gray-500 text-sm mt-1 font-medium">Jours</div>
+                    <div className="text-gray-500 text-sm mt-1 font-medium">Jours de travaux</div>
                   </div>
                   <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="text-4xl font-bold text-[#D4AF37]">4</div>

@@ -264,3 +264,8 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Texte justifié sur toutes les pages */
+p, .text-justify {
+  text-align: justify;
+}

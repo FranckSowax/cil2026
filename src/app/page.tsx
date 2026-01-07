@@ -99,10 +99,16 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section avec titre principal et countdown */}
       <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
-        <div className="absolute inset-0 mesh-gradient"></div>
-        
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/COVERCIL.jpg')" }}
+        ></div>
+        {/* Overlay gradient pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/80 via-[#0a1628]/70 to-[#0a1628]/90"></div>
+
         {/* Decorative blob */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-white/20 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-[#4169E1]/20 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Titre principal - Colloque International de Libreville */}
