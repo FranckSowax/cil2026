@@ -126,10 +126,10 @@ export default function Home() {
 
           {/* Countdown Section */}
           <div className="mb-8">
-            <p className="text-lg sm:text-xl font-medium text-blue-50 mb-2">
+            <p className="text-lg sm:text-xl font-medium text-blue-50 mb-2 text-center">
               Début du Colloque dans
             </p>
-            <p className="text-base sm:text-lg text-white/90 mb-8 font-light tracking-wide">
+            <p className="text-base sm:text-lg text-white/90 mb-8 font-light tracking-wide text-center">
               23 - 27 Mars 2026 • Libreville, Gabon
             </p>
           </div>
@@ -147,19 +147,19 @@ export default function Home() {
           <div className="text-center max-w-4xl mx-auto">
             {/* Titre du thème */}
             <div className="mb-10">
-              <p className="text-[#D4AF37] text-sm sm:text-base font-bold uppercase tracking-widest mb-4">
+              <p className="text-[#D4AF37] text-sm sm:text-base font-bold uppercase tracking-widest mb-4 text-center">
                 Thème de cette édition
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-6 leading-tight text-center">
                 « Intelligence artificielle et dynamiques des Organisations »
               </h2>
-              <p className="text-xl sm:text-2xl font-medium text-gray-700">
+              <p className="text-xl sm:text-2xl font-medium text-gray-700 text-center">
                 enjeux, défis et perspectives
               </p>
             </div>
 
             {/* Présidence */}
-            <p className="text-base sm:text-lg text-gray-500 mb-12">
+            <p className="text-base sm:text-lg text-gray-500 mb-12 text-center">
               Sous la présidence du <span className="text-[#4169E1] font-bold">Professeur Jean MOUSSAVOU</span>
             </p>
 
@@ -189,7 +189,7 @@ export default function Home() {
          <div className="absolute inset-0 bg-blue-900/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-10">
-            <p className="text-white/80 font-semibold text-sm sm:text-base uppercase tracking-wider">Une décennie d&apos;excellence</p>
+            <p className="text-white/80 font-semibold text-sm sm:text-base uppercase tracking-wider text-center">Une décennie d&apos;excellence</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -258,7 +258,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Tarifs d&apos;<span className="text-[#4169E1]">Inscription</span>
             </h2>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto text-center">
               Choisissez la formule adaptée à votre profil
             </p>
           </div>
@@ -337,7 +337,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Pourquoi <span className="text-blue-200">Participer ?</span>
             </h2>
-            <p className="text-blue-50 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-blue-50 text-base sm:text-lg max-w-2xl mx-auto text-center">
               Une expérience unique au cœur de l&apos;innovation africaine
             </p>
           </div>
@@ -372,8 +372,12 @@ export default function Home() {
           <div className="mb-12">
             <h3 className="text-gray-400 font-bold text-sm uppercase tracking-widest mb-6 text-center">Organisateur principal</h3>
             <div className="flex justify-center">
-              <div className="bg-white rounded-2xl px-10 py-6 border-2 border-[#D4AF37]/20 shadow-lg flex items-center gap-4">
-                <span className="text-[#D4AF37] font-bold text-2xl">LARSIG</span>
+              <div className="bg-white rounded-2xl p-4 sm:p-6 border-2 border-[#D4AF37]/30 shadow-lg hover:shadow-xl transition-shadow">
+                <img
+                  src="/images/logo-larsig.jpg"
+                  alt="LARSIG - Laboratoire de Recherches en Sciences de l'Informatique et de Gestion"
+                  className="h-20 sm:h-24 md:h-28 w-auto object-contain"
+                />
               </div>
             </div>
           </div>

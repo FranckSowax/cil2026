@@ -76,62 +76,62 @@ export default function CarteParticipants() {
   };
 
   return (
-    <div className="w-full">
-      {/* Stats Cards */}
-      <div className="flex flex-wrap justify-center gap-3 mb-8">
+    <div className="w-full px-2 sm:px-0">
+      {/* Stats Cards - Ultra Responsive */}
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
         <button
           onClick={() => setSelectedContinent(null)}
-          className={`px-5 py-3 rounded-xl cursor-pointer transition-all ${
+          className={`px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-lg sm:rounded-xl cursor-pointer transition-all ${
             selectedContinent === null
               ? 'bg-white text-slate-900 shadow-lg scale-105'
               : 'bg-white/10 text-white hover:bg-white/20'
           }`}
         >
-          <div className="text-2xl font-bold">{stats.total}</div>
-          <div className="text-xs">Tous les pays</div>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold">{stats.total}</div>
+          <div className="text-[10px] sm:text-xs">Tous les pays</div>
         </button>
         <button
           onClick={() => setSelectedContinent(selectedContinent === 'afrique' ? null : 'afrique')}
-          className={`px-5 py-3 rounded-xl cursor-pointer transition-all ${
+          className={`px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-lg sm:rounded-xl cursor-pointer transition-all ${
             selectedContinent === 'afrique'
               ? 'bg-green-500 text-white shadow-lg scale-105'
               : 'bg-white/10 text-green-400 hover:bg-white/20'
           }`}
         >
-          <div className="text-2xl font-bold">{stats.afrique}</div>
-          <div className="text-xs">Afrique</div>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold">{stats.afrique}</div>
+          <div className="text-[10px] sm:text-xs">Afrique</div>
         </button>
         <button
           onClick={() => setSelectedContinent(selectedContinent === 'europe' ? null : 'europe')}
-          className={`px-5 py-3 rounded-xl cursor-pointer transition-all ${
+          className={`px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-lg sm:rounded-xl cursor-pointer transition-all ${
             selectedContinent === 'europe'
               ? 'bg-blue-500 text-white shadow-lg scale-105'
               : 'bg-white/10 text-blue-400 hover:bg-white/20'
           }`}
         >
-          <div className="text-2xl font-bold">{stats.europe}</div>
-          <div className="text-xs">Europe</div>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold">{stats.europe}</div>
+          <div className="text-[10px] sm:text-xs">Europe</div>
         </button>
         <button
           onClick={() => setSelectedContinent(selectedContinent === 'amerique' ? null : 'amerique')}
-          className={`px-5 py-3 rounded-xl cursor-pointer transition-all ${
+          className={`px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-lg sm:rounded-xl cursor-pointer transition-all ${
             selectedContinent === 'amerique'
               ? 'bg-red-500 text-white shadow-lg scale-105'
               : 'bg-white/10 text-red-400 hover:bg-white/20'
           }`}
         >
-          <div className="text-2xl font-bold">{stats.amerique}</div>
-          <div className="text-xs">Amérique</div>
+          <div className="text-lg sm:text-xl md:text-2xl font-bold">{stats.amerique}</div>
+          <div className="text-[10px] sm:text-xs">Amérique</div>
         </button>
       </div>
 
-      {/* Map with Background Image and SVG Overlay */}
-      <div className="relative rounded-2xl overflow-hidden mb-8">
+      {/* Map with Background Image and SVG Overlay - Ultra Responsive */}
+      <div className="relative rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-6 md:mb-8 shadow-lg">
         {/* Background Image */}
         <img
           src="/images/fond-carte.jpg"
           alt="Carte mondiale"
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover min-h-[200px] sm:min-h-[300px] md:min-h-[400px]"
         />
 
         {/* SVG Overlay for animated points and lines */}
@@ -266,22 +266,22 @@ export default function CarteParticipants() {
           </g>
         </svg>
 
-        {/* Hover tooltip */}
+        {/* Hover tooltip - Ultra Responsive */}
         {hoveredCountry && (
           <div
-            className="absolute bg-slate-900/95 text-white px-3 py-2 rounded-lg shadow-xl border border-white/20 pointer-events-none z-20 backdrop-blur-sm text-sm"
+            className="absolute bg-slate-900/95 text-white px-2 py-1.5 sm:px-3 sm:py-2 rounded-md sm:rounded-lg shadow-xl border border-white/20 pointer-events-none z-20 backdrop-blur-sm text-xs sm:text-sm"
             style={{
-              left: `${hoveredCountry.x}%`,
-              top: `${hoveredCountry.y - 8}%`,
+              left: `${Math.min(Math.max(hoveredCountry.x, 15), 85)}%`,
+              top: `${hoveredCountry.y - 6}%`,
               transform: 'translate(-50%, -100%)'
             }}
           >
-            <div className="flex items-center gap-2">
-              <span className="text-xl">{hoveredCountry.flag}</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-base sm:text-xl">{hoveredCountry.flag}</span>
               <div>
-                <div className="font-bold">{hoveredCountry.name}</div>
+                <div className="font-bold text-xs sm:text-sm">{hoveredCountry.name}</div>
                 <div
-                  className="text-xs"
+                  className="text-[10px] sm:text-xs"
                   style={{ color: hoveredCountry.color }}
                 >
                   {hoveredCountry.continent}
@@ -291,40 +291,40 @@ export default function CarteParticipants() {
           </div>
         )}
 
-        {/* Legend overlay */}
-        <div className="absolute bottom-4 left-4 flex flex-wrap gap-3 text-xs">
-          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        {/* Legend overlay - Ultra Responsive */}
+        <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-2 sm:left-3 md:left-4 flex flex-wrap gap-1 sm:gap-2 md:gap-3 text-[8px] sm:text-[10px] md:text-xs">
+          <div className="flex items-center gap-1 sm:gap-1.5 bg-black/60 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse"></span>
             <span className="text-green-400">Afrique</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
-            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+          <div className="flex items-center gap-1 sm:gap-1.5 bg-black/60 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-pulse"></span>
             <span className="text-blue-400">Europe</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
-            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+          <div className="flex items-center gap-1 sm:gap-1.5 bg-black/60 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse"></span>
             <span className="text-red-400">Amérique</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
-            <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+          <div className="hidden sm:flex items-center gap-1 sm:gap-1.5 bg-black/60 backdrop-blur-sm px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-yellow-400 rounded-full animate-pulse"></span>
             <span className="text-yellow-400">Libreville</span>
           </div>
         </div>
       </div>
 
-      {/* Country Lists */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Country Lists - Ultra Responsive */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
         {/* Afrique */}
-        <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border transition-all ${
+        <div className={`bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border transition-all ${
           selectedContinent === 'afrique' ? 'border-green-500 shadow-lg shadow-green-500/20' : 'border-white/20'
         } ${selectedContinent && selectedContinent !== 'afrique' ? 'opacity-40' : ''}`}>
-          <h3 className="text-green-400 font-bold mb-4 flex items-center gap-2 text-lg">
-            <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+          <h3 className="text-green-400 font-bold mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-green-500 rounded-full animate-pulse"></span>
             Afrique ({stats.afrique} pays)
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {countries.afrique.countries.map((c, i) => (
-              <span key={i} className="bg-green-900/30 text-green-300 px-3 py-1.5 rounded-lg text-sm flex items-center gap-1.5 hover:bg-green-800/50 transition-colors cursor-default">
+              <span key={i} className="bg-green-900/30 text-green-300 px-2 py-1 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm flex items-center gap-1 sm:gap-1.5 hover:bg-green-800/50 transition-colors cursor-default">
                 {c.flag} {c.name}
               </span>
             ))}
@@ -332,16 +332,16 @@ export default function CarteParticipants() {
         </div>
 
         {/* Europe */}
-        <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border transition-all ${
+        <div className={`bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border transition-all ${
           selectedContinent === 'europe' ? 'border-blue-500 shadow-lg shadow-blue-500/20' : 'border-white/20'
         } ${selectedContinent && selectedContinent !== 'europe' ? 'opacity-40' : ''}`}>
-          <h3 className="text-blue-400 font-bold mb-4 flex items-center gap-2 text-lg">
-            <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
+          <h3 className="text-blue-400 font-bold mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-blue-500 rounded-full animate-pulse"></span>
             Europe ({stats.europe} pays)
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {countries.europe.countries.map((c, i) => (
-              <span key={i} className="bg-blue-900/30 text-blue-300 px-3 py-1.5 rounded-lg text-sm flex items-center gap-1.5 hover:bg-blue-800/50 transition-colors cursor-default">
+              <span key={i} className="bg-blue-900/30 text-blue-300 px-2 py-1 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm flex items-center gap-1 sm:gap-1.5 hover:bg-blue-800/50 transition-colors cursor-default">
                 {c.flag} {c.name}
               </span>
             ))}
@@ -349,16 +349,16 @@ export default function CarteParticipants() {
         </div>
 
         {/* Amérique */}
-        <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border transition-all ${
+        <div className={`bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border transition-all sm:col-span-2 lg:col-span-1 ${
           selectedContinent === 'amerique' ? 'border-red-500 shadow-lg shadow-red-500/20' : 'border-white/20'
         } ${selectedContinent && selectedContinent !== 'amerique' ? 'opacity-40' : ''}`}>
-          <h3 className="text-red-400 font-bold mb-4 flex items-center gap-2 text-lg">
-            <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+          <h3 className="text-red-400 font-bold mb-2 sm:mb-3 md:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-red-500 rounded-full animate-pulse"></span>
             Amérique ({stats.amerique} pays)
           </h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {countries.amerique.countries.map((c, i) => (
-              <span key={i} className="bg-red-900/30 text-red-300 px-3 py-1.5 rounded-lg text-sm flex items-center gap-1.5 hover:bg-red-800/50 transition-colors cursor-default">
+              <span key={i} className="bg-red-900/30 text-red-300 px-2 py-1 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm flex items-center gap-1 sm:gap-1.5 hover:bg-red-800/50 transition-colors cursor-default">
                 {c.flag} {c.name}
               </span>
             ))}
