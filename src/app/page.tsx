@@ -94,13 +94,13 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section avec titre principal et countdown */}
       <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image avec effet Parallax */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/COVERCIL.jpg')" }}
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url('/images/COVERSCILBACK.jpg')" }}
         ></div>
         {/* Overlay gradient pour lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/80 via-[#0a1628]/70 to-[#0a1628]/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/70 via-[#0a1628]/60 to-[#0a1628]/80"></div>
 
         {/* Decorative blob */}
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-[#4169E1]/20 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
