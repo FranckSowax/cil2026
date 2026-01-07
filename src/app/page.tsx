@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Countdown from "@/components/Countdown";
 import CarteParticipants from "@/components/CarteParticipants";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import { ArrowRight, Check, ChevronRight, Users, Mic, Globe, Zap, GraduationCap, Briefcase, BookOpen, Building2, Award } from "lucide-react";
 
 // Date du colloque - 25 mars 2026
@@ -10,10 +11,10 @@ const eventDate = new Date('2026-03-25T09:00:00');
 
 // Statistiques actuelles et historiques
 const stats = [
-  { value: '12', suffix: 'ème', label: 'Édition' },
-  { value: '1000', suffix: '+', label: 'Participants depuis 2013' },
-  { value: '600', suffix: '+', label: 'Communications' },
-  { value: '15', suffix: '+', label: 'Pays' },
+  { value: 12, suffix: 'ème', label: 'Édition' },
+  { value: 1000, suffix: '+', label: 'Participants depuis 2013' },
+  { value: 600, suffix: '+', label: 'Communications' },
+  { value: 15, suffix: '+', label: 'Pays' },
 ];
 
 // Tarifs par ordre décroissant (sans mention POPULAIRE)
@@ -184,22 +185,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section - Transparent (Blue Gradient) */}
-      <section className="py-16 sm:py-20 border-y border-white/10 relative overflow-hidden">
-         <div className="absolute inset-0 bg-blue-900/20"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-10">
-            <p className="text-white/80 font-semibold text-sm sm:text-base uppercase tracking-wider text-center">Une décennie d&apos;excellence</p>
+      {/* Stats Section - Background Parallax avec Compteurs Animés */}
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        {/* Background Image avec effet Parallax */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url('/images/COVERCIL.jpg')" }}
+        ></div>
+        {/* Overlay sombre pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/85 via-[#0a1628]/80 to-[#0a1628]/85"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-[#D4AF37] font-bold text-sm sm:text-base uppercase tracking-widest mb-3 text-center">Depuis 2013</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center">
+              Une décennie d&apos;<span className="text-blue-300">excellence</span>
+            </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center relative">
-                <div className="stat-number drop-shadow-sm">
-                  {stat.value}<span className="text-2xl sm:text-4xl">{stat.suffix}</span>
+              <div key={stat.label} className="text-center relative group">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg">
+                    <AnimatedCounter end={stat.value} duration={2500} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-xs sm:text-sm text-blue-200 uppercase tracking-wider font-medium">{stat.label}</div>
                 </div>
-                <div className="stat-label text-blue-100 font-medium">{stat.label}</div>
                 {index < stats.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-16 bg-white/20"></div>
+                  <div className="hidden md:block absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
                 )}
               </div>
             ))}
