@@ -97,21 +97,37 @@ const features = [
 export default function Home() {
   return (
     <div className="bg-[#0A0A0A]">
-      {/* Countdown Section - Centré au-dessus du hero */}
-      <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-12 overflow-hidden">
+      {/* Hero Section avec titre principal et countdown */}
+      <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-[#4169E1]/15 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Titre du countdown */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-3 sm:mb-4">
-            Début du Colloque dans
-          </h2>
+          {/* Titre principal - Colloque International de Libreville */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-2 sm:mb-3">
+            Colloque International de Libreville
+          </h1>
 
-          {/* Date en blanc - plus grande */}
+          {/* Sous-titre - Regards croisés */}
           <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6 sm:mb-8">
-            23 - 27 Mars 2026
+            « Regards croisés sur le développement en Afrique »
           </p>
+
+          {/* Badge édition */}
+          <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-full mb-8 sm:mb-10">
+            <span className="w-2 h-2 bg-[#4169E1] rounded-full mr-3 animate-pulse"></span>
+            <span className="text-sm sm:text-base text-[#B0B0B0]">12è édition • CIL2026</span>
+          </div>
+
+          {/* Countdown Section */}
+          <div className="mb-6 sm:mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#4169E1] mb-2">
+              Début du Colloque dans
+            </p>
+            <p className="text-base sm:text-lg text-white/80 mb-4 sm:mb-6">
+              23 - 27 Mars 2026 • Libreville, Gabon
+            </p>
+          </div>
 
           {/* Countdown component */}
           <div className="max-w-lg mx-auto">
@@ -120,53 +136,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden">
+      {/* Thème Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden bg-[#111111]">
         {/* Mesh gradient background */}
-        <div className="absolute inset-0 mesh-gradient"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/20 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
-          <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-48 sm:w-96 h-48 sm:h-96 bg-[#D4AF37]/15 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
+          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+          <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-48 sm:w-96 h-48 sm:h-96 bg-[#D4AF37]/10 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            {/* En-tête officiel */}
+            {/* Titre du thème */}
             <div className="mb-6 sm:mb-8">
-              <h2 className="text-[#4169E1] text-base sm:text-lg md:text-xl font-semibold uppercase tracking-wider mb-2">
-                Colloque International de Libreville
-              </h2>
-              <p className="text-white/70 text-sm sm:text-base italic mb-2">
-                « Regards croisés sur le développement en Afrique »
+              <p className="text-[#D4AF37] text-sm sm:text-base font-semibold uppercase tracking-wider mb-4">
+                Thème de cette édition
               </p>
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full">
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#4169E1] rounded-full mr-2 animate-pulse"></span>
-                <span className="text-xs sm:text-sm text-[#B0B0B0]">12è édition • CIL2026</span>
-              </div>
-            </div>
-
-            {/* Titre du thème avec typographie plus grande */}
-            <div className="mb-4 sm:mb-6">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] mb-2 leading-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] mb-3 leading-tight">
                 « Intelligence artificielle et dynamiques des Organisations »
-              </h1>
-              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#4169E1]">
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
                 enjeux, défis et perspectives
               </p>
             </div>
 
             {/* Présidence */}
-            <p className="text-sm sm:text-base text-[#B0B0B0]/70 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-[#B0B0B0] mb-8 sm:mb-10">
               Sous la présidence du <span className="text-white font-medium">Professeur Jean MOUSSAVOU</span>
             </p>
-
-            {/* Location */}
-            <div className="flex justify-center mb-8 sm:mb-10">
-              <div className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-full">
-                <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-[#4169E1]" />
-                <span className="text-white text-sm sm:text-base font-medium">Libreville, Gabon</span>
-              </div>
-            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
