@@ -38,8 +38,8 @@ export default function Header() {
               <span className="text-[#4169E1] font-bold text-xs sm:text-sm">CIL</span>
             </div>
             <div className="hidden xs:block sm:block">
-              <span className="font-bold text-white text-sm sm:text-lg drop-shadow-sm">CIL 2026</span>
-              <span className="hidden sm:block text-xs text-white/90">12è édition • Libreville</span>
+              <span className="font-bold text-white text-sm sm:text-lg drop-shadow-sm" style={{ color: '#ffffff' }}>CIL 2026</span>
+              <span className="hidden sm:block text-xs text-white/90" style={{ color: 'rgba(255,255,255,0.9)' }}>12è édition • Libreville</span>
             </div>
           </Link>
 
@@ -50,6 +50,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className="px-4 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors relative group"
+                style={{ color: 'rgba(255,255,255,0.9)' }}
               >
                 {item.name}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-white group-hover:w-1/2 transition-all duration-300"></span>
@@ -62,6 +63,7 @@ export default function Header() {
             <Link
               href="/appel-communications"
               className="px-5 py-2.5 text-sm font-medium text-white border border-white/30 rounded-full hover:bg-white/10 transition-all"
+              style={{ color: '#ffffff' }}
             >
               Appel à papiers
             </Link>
@@ -77,6 +79,7 @@ export default function Header() {
           <button
             type="button"
             className="lg:hidden p-1.5 sm:p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+            style={{ color: '#ffffff' }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (

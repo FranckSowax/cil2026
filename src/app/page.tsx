@@ -109,28 +109,28 @@ export default function Home() {
           {/* Titre principal - Colloque International de Libreville */}
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 drop-shadow-md uppercase tracking-wide"
-            style={{ fontFamily: "'Arial Black', 'Arial Bold', Gadget, sans-serif", fontWeight: 900 }}
+            style={{ fontFamily: "'Arial Black', 'Arial Bold', Gadget, sans-serif", fontWeight: 900, color: '#ffffff' }}
           >
             Colloque International de Libreville
           </h1>
 
           {/* Sous-titre - Regards croisés */}
-          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-100 mb-8 max-w-4xl mx-auto">
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-100 mb-8 max-w-4xl mx-auto" style={{ color: '#dbeafe' }}>
             « Regards croisés sur le développement en Afrique »
           </p>
 
           {/* Badge édition */}
           <div className="inline-flex items-center px-6 py-2 bg-white/10 backdrop-blur-md border border-white/30 rounded-full mb-10 shadow-lg">
             <span className="w-2.5 h-2.5 bg-white rounded-full mr-3 animate-pulse"></span>
-            <span className="text-sm sm:text-base font-medium text-white tracking-wide">12è édition • CIL2026</span>
+            <span className="text-sm sm:text-base font-medium text-white tracking-wide" style={{ color: '#ffffff' }}>12è édition • CIL2026</span>
           </div>
 
           {/* Countdown Section */}
           <div className="mb-8">
-            <p className="text-lg sm:text-xl font-medium text-blue-50 mb-2 text-center">
+            <p className="text-lg sm:text-xl font-medium text-blue-50 mb-2 text-center" style={{ color: '#eff6ff' }}>
               Début du Colloque dans
             </p>
-            <p className="text-base sm:text-lg text-white/90 mb-8 font-light tracking-wide text-center">
+            <p className="text-base sm:text-lg text-white/90 mb-8 font-light tracking-wide text-center" style={{ color: 'rgba(255,255,255,0.9)' }}>
               23 - 27 Mars 2026 • Libreville, Gabon
             </p>
           </div>

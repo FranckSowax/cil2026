@@ -52,8 +52,8 @@ export default function Countdown({ targetDate }: CountdownProps) {
       <div className="grid grid-cols-4 gap-3 sm:gap-4">
         {timeUnits.map((unit) => (
           <div key={unit.label} className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 md:p-5 text-center border border-white/20 shadow-lg">
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono">--</div>
-            <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium">{unit.label}</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono" style={{ color: '#ffffff' }}>--</div>
+            <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium" style={{ color: '#dbeafe' }}>{unit.label}</div>
           </div>
         ))}
       </div>
@@ -67,10 +67,10 @@ export default function Countdown({ targetDate }: CountdownProps) {
           key={unit.label}
           className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 md:p-5 text-center border border-white/20 shadow-lg hover:bg-white/20 transition-colors"
         >
-          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono drop-shadow-md">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono drop-shadow-md" style={{ color: '#ffffff' }}>
             {unit.value.toString().padStart(2, '0')}
           </div>
-          <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium">{unit.label}</div>
+          <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium" style={{ color: '#dbeafe' }}>{unit.label}</div>
         </div>
       ))}
     </div>
