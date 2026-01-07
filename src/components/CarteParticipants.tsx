@@ -7,48 +7,69 @@ const countries = {
     name: "Afrique",
     color: "#22c55e",
     countries: [
-      { name: "Gabon", flag: "🇬🇦" },
-      { name: "Cameroun", flag: "🇨🇲" },
-      { name: "Côte d'Ivoire", flag: "🇨🇮" },
-      { name: "Sénégal", flag: "🇸🇳" },
-      { name: "Burkina Faso", flag: "🇧🇫" },
-      { name: "Bénin", flag: "🇧🇯" },
-      { name: "Togo", flag: "🇹🇬" },
-      { name: "Mali", flag: "🇲🇱" },
-      { name: "Niger", flag: "🇳🇪" },
-      { name: "RDC", flag: "🇨🇩" },
-      { name: "Congo", flag: "🇨🇬" },
-      { name: "Maroc", flag: "🇲🇦" },
-      { name: "Tunisie", flag: "🇹🇳" },
+      { name: "Gabon", x: 51.5, y: 58, flag: "🇬🇦" },
+      { name: "Cameroun", x: 50, y: 52, flag: "🇨🇲" },
+      { name: "Côte d'Ivoire", x: 43, y: 54, flag: "🇨🇮" },
+      { name: "Sénégal", x: 38, y: 48, flag: "🇸🇳" },
+      { name: "Burkina Faso", x: 44, y: 48, flag: "🇧🇫" },
+      { name: "Bénin", x: 47, y: 52, flag: "🇧🇯" },
+      { name: "Togo", x: 46, y: 52, flag: "🇹🇬" },
+      { name: "Mali", x: 42, y: 45, flag: "🇲🇱" },
+      { name: "Niger", x: 49, y: 45, flag: "🇳🇪" },
+      { name: "RDC", x: 55, y: 62, flag: "🇨🇩" },
+      { name: "Congo", x: 52, y: 60, flag: "🇨🇬" },
+      { name: "Maroc", x: 43, y: 35, flag: "🇲🇦" },
+      { name: "Tunisie", x: 49, y: 33, flag: "🇹🇳" },
     ]
   },
   europe: {
     name: "Europe",
     color: "#3b82f6",
     countries: [
-      { name: "France", flag: "🇫🇷" },
-      { name: "Belgique", flag: "🇧🇪" },
-      { name: "Suisse", flag: "🇨🇭" },
-      { name: "Allemagne", flag: "🇩🇪" },
+      { name: "France", x: 47, y: 28, flag: "🇫🇷" },
+      { name: "Belgique", x: 48, y: 25, flag: "🇧🇪" },
+      { name: "Suisse", x: 49, y: 28, flag: "🇨🇭" },
+      { name: "Allemagne", x: 50, y: 25, flag: "🇩🇪" },
     ]
   },
   amerique: {
     name: "Amérique",
     color: "#ef4444",
     countries: [
-      { name: "Canada", flag: "🇨🇦" },
-      { name: "États-Unis", flag: "🇺🇸" },
+      { name: "Canada", x: 20, y: 28, flag: "🇨🇦" },
+      { name: "États-Unis", x: 18, y: 38, flag: "🇺🇸" },
     ]
   }
 };
 
+// Position de Libreville (Gabon)
+const libreville = { x: 51.5, y: 58 };
+
 type ContinentKey = 'afrique' | 'europe' | 'amerique';
+
+interface Country {
+  name: string;
+  x: number;
+  y: number;
+  flag: string;
+  continent?: string;
+  color?: string;
+}
 
 export default function CarteParticipants() {
   const [selectedContinent, setSelectedContinent] = useState<ContinentKey | null>(null);
+  const [hoveredCountry, setHoveredCountry] = useState<Country | null>(null);
+
+  const allCountries: Country[] = Object.values(countries).flatMap(c =>
+    c.countries.map(country => ({ ...country, continent: c.name, color: c.color }))
+  );
+
+  const filteredCountries = selectedContinent
+    ? allCountries.filter(c => c.continent === countries[selectedContinent]?.name)
+    : allCountries;
 
   const stats = {
-    total: countries.afrique.countries.length + countries.europe.countries.length + countries.amerique.countries.length,
+    total: allCountries.length,
     afrique: countries.afrique.countries.length,
     europe: countries.europe.countries.length,
     amerique: countries.amerique.countries.length
@@ -104,14 +125,191 @@ export default function CarteParticipants() {
         </button>
       </div>
 
-      {/* Map Image */}
+      {/* Map with Background Image and SVG Overlay */}
       <div className="relative rounded-2xl overflow-hidden mb-8">
+        {/* Background Image */}
         <img
           src="/images/fond-carte.jpg"
-          alt="Carte mondiale des participants"
-          className="w-full h-auto object-cover rounded-2xl"
+          alt="Carte mondiale"
+          className="w-full h-auto object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent"></div>
+
+        {/* SVG Overlay for animated points and lines */}
+        <svg
+          viewBox="0 0 100 60"
+          className="absolute inset-0 w-full h-full"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Connection lines from Libreville */}
+          {filteredCountries.map((country, index) => (
+            country.name !== "Gabon" && (
+              <g key={`line-${index}`}>
+                <line
+                  x1={libreville.x}
+                  y1={libreville.y}
+                  x2={country.x}
+                  y2={country.y}
+                  stroke={country.color}
+                  strokeWidth="0.15"
+                  opacity="0.4"
+                />
+                <line
+                  x1={libreville.x}
+                  y1={libreville.y}
+                  x2={country.x}
+                  y2={country.y}
+                  stroke={country.color}
+                  strokeWidth="0.1"
+                  strokeDasharray="1,0.5"
+                  opacity="0.7"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    from="0"
+                    to="1.5"
+                    dur="1.5s"
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </g>
+            )
+          ))}
+
+          {/* Country markers */}
+          {filteredCountries.map((country, index) => (
+            <g
+              key={index}
+              onMouseEnter={() => setHoveredCountry(country)}
+              onMouseLeave={() => setHoveredCountry(null)}
+              style={{ cursor: 'pointer' }}
+            >
+              {/* Outer pulse ring */}
+              <circle
+                cx={country.x}
+                cy={country.y}
+                r="2"
+                fill="none"
+                stroke={country.color}
+                strokeWidth="0.3"
+              >
+                <animate
+                  attributeName="r"
+                  from="1"
+                  to="3"
+                  dur={`${1.5 + (index % 3) * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  from="0.8"
+                  to="0"
+                  dur={`${1.5 + (index % 3) * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+
+              {/* Main dot */}
+              <circle
+                cx={country.x}
+                cy={country.y}
+                r={country.name === "Gabon" ? "1.2" : "0.8"}
+                fill={country.name === "Gabon" ? "#fbbf24" : country.color}
+                filter="url(#glow)"
+              >
+                <animate
+                  attributeName="r"
+                  values={country.name === "Gabon" ? "1;1.5;1" : "0.6;1;0.6"}
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+
+              {/* Inner bright core */}
+              <circle
+                cx={country.x}
+                cy={country.y}
+                r="0.3"
+                fill="white"
+                opacity="0.9"
+              />
+            </g>
+          ))}
+
+          {/* Libreville special marker */}
+          <g>
+            <circle cx={libreville.x} cy={libreville.y} r="4" fill="#fbbf24" opacity="0.15">
+              <animate
+                attributeName="r"
+                from="2"
+                to="5"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                from="0.3"
+                to="0"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+          </g>
+        </svg>
+
+        {/* Hover tooltip */}
+        {hoveredCountry && (
+          <div
+            className="absolute bg-slate-900/95 text-white px-3 py-2 rounded-lg shadow-xl border border-white/20 pointer-events-none z-20 backdrop-blur-sm text-sm"
+            style={{
+              left: `${hoveredCountry.x}%`,
+              top: `${hoveredCountry.y - 8}%`,
+              transform: 'translate(-50%, -100%)'
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-xl">{hoveredCountry.flag}</span>
+              <div>
+                <div className="font-bold">{hoveredCountry.name}</div>
+                <div
+                  className="text-xs"
+                  style={{ color: hoveredCountry.color }}
+                >
+                  {hoveredCountry.continent}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Legend overlay */}
+        <div className="absolute bottom-4 left-4 flex flex-wrap gap-3 text-xs">
+          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="text-green-400">Afrique</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            <span className="text-blue-400">Europe</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+            <span className="text-red-400">Amérique</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+            <span className="text-yellow-400">Libreville</span>
+          </div>
+        </div>
       </div>
 
       {/* Country Lists */}
