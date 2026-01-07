@@ -96,7 +96,7 @@ export default function Home() {
       <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
         {/* Background Image avec effet Parallax */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          className="absolute inset-0 bg-parallax"
           style={{ backgroundImage: "url('/images/COVERSCILBACK.jpg')" }}
         ></div>
         {/* Overlay gradient pour lisibilité */}
@@ -189,7 +189,7 @@ export default function Home() {
       <section className="py-20 sm:py-28 relative overflow-hidden">
         {/* Background Image avec effet Parallax */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          className="absolute inset-0 bg-parallax"
           style={{ backgroundImage: "url('/images/COVERCIL.jpg')" }}
         ></div>
         {/* Overlay sombre pour lisibilité */}

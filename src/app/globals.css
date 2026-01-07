@@ -265,6 +265,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Background parallax - Compatible mobile */
+/* Sur iOS Safari, background-attachment: fixed ne fonctionne pas */
+/* On utilise bg-scroll par défaut (mobile) et bg-fixed sur desktop */
+.bg-parallax {
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; /* Default for mobile */
+}
+
+@media (min-width: 768px) {
+  .bg-parallax {
+    background-attachment: fixed; /* Parallax only on desktop */
+  }
+}
+
 /* Texte justifié uniquement pour les paragraphes (pas les titres) */
 p:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   text-align: justify;
