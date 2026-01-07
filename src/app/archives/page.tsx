@@ -113,30 +113,36 @@ const globalStats = [
 
 export default function ArchivesPage() {
   return (
-    <div className="bg-[#0A0A0A] min-h-screen pt-24 sm:pt-28">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-              Archives du <span className="text-[#4169E1]">CIL</span>
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1e3a8a]"></div>
+        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-white/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-sm">
+              Archives du <span className="text-blue-200">CIL</span>
             </h1>
-            <p className="text-[#B0B0B0] text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-blue-50 max-w-3xl mx-auto px-2 font-light">
               Découvrez l&apos;histoire du Colloque International de Libreville depuis sa création en 2013
             </p>
           </div>
+        </div>
+      </section>
 
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Statistiques globales */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16">
             {globalStats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-[#1A1A1A] rounded-xl p-6 border border-white/10 text-center"
+                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-center hover:-translate-y-1 transition-transform"
               >
                 <div className="text-3xl sm:text-4xl font-bold text-[#4169E1] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-[#B0B0B0] text-sm">{stat.label}</div>
+                <div className="text-gray-500 text-sm font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -146,24 +152,26 @@ export default function ArchivesPage() {
             {editions.map((edition, index) => (
               <div
                 key={edition.year}
-                className={`bg-[#1A1A1A] rounded-2xl p-6 sm:p-8 border transition-all duration-300 hover:border-[#4169E1]/30 ${
-                  index === 0 ? "border-[#4169E1]/50" : "border-white/10"
+                className={`bg-white rounded-2xl p-6 sm:p-8 border transition-all duration-300 hover:shadow-xl ${
+                  index === 0 
+                    ? "border-[#4169E1] shadow-md ring-1 ring-[#4169E1]/20" 
+                    : "border-gray-100 hover:border-[#4169E1]/30"
                 }`}
               >
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="px-3 py-1 bg-[#4169E1]/20 text-[#4169E1] rounded-full text-sm font-semibold">
+                      <span className="px-3 py-1 bg-blue-50 text-[#4169E1] rounded-full text-sm font-bold">
                         {edition.edition} édition
                       </span>
                       <span className="text-[#D4AF37] font-bold text-lg">
                         {edition.year}
                       </span>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-3">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
                       {edition.theme}
                     </h3>
-                    <div className="flex flex-wrap gap-4 text-sm text-[#B0B0B0]">
+                    <div className="flex flex-wrap gap-4 text-sm text-gray-500">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[#4169E1]" />
                         {edition.dates}
@@ -174,20 +182,20 @@ export default function ArchivesPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-6 lg:gap-8">
+                  <div className="flex gap-6 lg:gap-10 border-t lg:border-t-0 border-gray-100 pt-4 lg:pt-0">
                     <div className="text-center">
                       <div className="flex items-center justify-center w-12 h-12 bg-[#4169E1]/10 rounded-full mb-2 mx-auto">
                         <Users className="w-5 h-5 text-[#4169E1]" />
                       </div>
-                      <div className="text-white font-bold">{edition.participants}</div>
-                      <div className="text-[#B0B0B0] text-xs">Participants</div>
+                      <div className="text-gray-900 font-bold">{edition.participants}</div>
+                      <div className="text-gray-500 text-xs font-medium">Participants</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center w-12 h-12 bg-[#4169E1]/10 rounded-full mb-2 mx-auto">
                         <FileText className="w-5 h-5 text-[#4169E1]" />
                       </div>
-                      <div className="text-white font-bold">{edition.communications}</div>
-                      <div className="text-[#B0B0B0] text-xs">Communications</div>
+                      <div className="text-gray-900 font-bold">{edition.communications}</div>
+                      <div className="text-gray-500 text-xs font-medium">Comms</div>
                     </div>
                   </div>
                 </div>
@@ -196,10 +204,10 @@ export default function ArchivesPage() {
           </div>
 
           {/* Note */}
-          <div className="mt-12 bg-[#1A1A1A] rounded-xl p-6 border border-white/10 text-center">
-            <p className="text-[#B0B0B0] text-sm">
+          <div className="mt-16 bg-blue-50 rounded-2xl p-8 border border-blue-100 text-center">
+            <p className="text-gray-600 text-sm">
               Pour accéder aux actes et publications des éditions précédentes, veuillez contacter :{" "}
-              <a href="mailto:larsigist@yahoo.fr" className="text-[#4169E1] hover:underline">
+              <a href="mailto:larsigist@yahoo.fr" className="text-[#4169E1] font-bold hover:underline">
                 larsigist@yahoo.fr
               </a>
             </p>

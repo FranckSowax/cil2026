@@ -83,20 +83,20 @@ export default function InfosPratiquesPage() {
   };
 
   return (
-    <div className="bg-[#0A0A0A]">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
-        <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute bottom-10 sm:bottom-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1e3a8a]"></div>
+        <div className="absolute bottom-10 sm:bottom-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-white/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
-              <span className="text-xs sm:text-sm text-[#B0B0B0]">Contact & Infos</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 border border-white/20 rounded-full mb-4 sm:mb-6 backdrop-blur-sm">
+              <span className="text-xs sm:text-sm text-white font-medium">Contact & Infos</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-              Informations <span className="text-[#00D9C5]">Pratiques</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-sm">
+              Informations <span className="text-blue-200">Pratiques</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
+            <p className="text-base sm:text-lg md:text-xl text-blue-50 max-w-3xl mx-auto px-2 font-light">
               Tout ce que vous devez savoir pour préparer votre venue au CIL 2026
             </p>
           </div>
@@ -104,16 +104,16 @@ export default function InfosPratiquesPage() {
       </section>
 
       {/* Lieu du colloque */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Lieu du Colloque</h2>
-            <p className="text-[#B0B0B0]">Université Omar Bongo, Libreville, Gabon</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Lieu du Colloque</h2>
+            <p className="text-gray-600 text-lg">Université Omar Bongo, Libreville, Gabon</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Carte Google Maps */}
-            <div className="bg-[#1A1A1A] rounded-3xl overflow-hidden h-[400px] border border-white/10">
+            <div className="bg-gray-100 rounded-3xl overflow-hidden h-[400px] border border-gray-200 shadow-lg">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.815089744!2d9.4544!3d0.3833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x107f3b8a5c5c5c5c%3A0x5c5c5c5c5c5c5c5c!2sUniversit%C3%A9%20Omar%20Bongo!5e0!3m2!1sfr!2sga!4v1234567890"
                 width="100%"
@@ -128,41 +128,44 @@ export default function InfosPratiquesPage() {
 
             {/* Informations de contact */}
             <div className="space-y-6">
-              <div className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10">
-                <h3 className="font-bold text-lg text-[#00D9C5] mb-4">Adresse</h3>
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-6 h-6 text-[#00D9C5] flex-shrink-0" />
-                  <div>
-                    <p className="text-white">Université Omar Bongo</p>
-                    <p className="text-[#B0B0B0]">Boulevard Léon Mba</p>
-                    <p className="text-[#B0B0B0]">BP 13131, Libreville</p>
-                    <p className="text-[#B0B0B0]">Gabon</p>
-                  </div>
+              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:border-[#4169E1]/30 transition-all">
+                <h3 className="font-bold text-xl text-[#4169E1] mb-4 flex items-center">
+                  <MapPin className="w-5 h-5 mr-2" /> Adresse
+                </h3>
+                <div className="pl-7">
+                  <p className="text-gray-900 font-semibold text-lg">Université Omar Bongo</p>
+                  <p className="text-gray-600">Boulevard Léon Mba</p>
+                  <p className="text-gray-600">BP 13131, Libreville</p>
+                  <p className="text-gray-600">Gabon</p>
                 </div>
               </div>
 
-              <div className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10">
-                <h3 className="font-bold text-lg text-[#00D9C5] mb-4">Contact</h3>
-                <div className="space-y-3">
+              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:border-[#4169E1]/30 transition-all">
+                <h3 className="font-bold text-xl text-[#4169E1] mb-4 flex items-center">
+                  <Phone className="w-5 h-5 mr-2" /> Contact
+                </h3>
+                <div className="space-y-4 pl-7">
                   <div className="flex items-center space-x-3">
-                    <Mail className="w-5 h-5 text-[#00D9C5]" />
-                    <a href="mailto:larsigist@yahoo.fr" className="text-white hover:text-[#00D9C5] transition-colors">
+                    <Mail className="w-5 h-5 text-gray-400" />
+                    <a href="mailto:larsigist@yahoo.fr" className="text-gray-700 hover:text-[#4169E1] transition-colors font-medium">
                       larsigist@yahoo.fr
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Phone className="w-5 h-5 text-[#00D9C5]" />
-                    <span className="text-white">+241 XX XX XX XX</span>
+                    <Phone className="w-5 h-5 text-gray-400" />
+                    <span className="text-gray-700 font-medium">+241 XX XX XX XX</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] text-black rounded-3xl p-6">
-                <h3 className="font-bold text-lg mb-2">Dates du Colloque</h3>
-                <p className="text-black/80">23 - 27 Mars 2026</p>
-                <ul className="mt-3 space-y-1 text-sm text-black/70">
-                  <li>• 23-24 Mars : Ateliers pré-colloque</li>
-                  <li>• 25-27 Mars : Colloque principal</li>
+              <div className="bg-[#4169E1] text-white rounded-3xl p-8 shadow-xl">
+                <h3 className="font-bold text-xl mb-3 flex items-center">
+                  <Clock className="w-5 h-5 mr-2" /> Dates du Colloque
+                </h3>
+                <p className="text-white/90 text-lg font-medium mb-4">23 - 27 Mars 2026</p>
+                <ul className="space-y-2 text-sm text-white/80">
+                  <li className="flex items-center"><span className="w-1.5 h-1.5 bg-white rounded-full mr-2"></span> 23-24 Mars : Ateliers pré-colloque</li>
+                  <li className="flex items-center"><span className="w-1.5 h-1.5 bg-white rounded-full mr-2"></span> 25-27 Mars : Colloque principal</li>
                 </ul>
               </div>
             </div>
@@ -171,22 +174,23 @@ export default function InfosPratiquesPage() {
       </section>
 
       {/* Informations pratiques */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title-cyan">Préparer Votre Voyage</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Préparer Votre Voyage</h2>
+            <p className="text-gray-600 text-lg">Conseils utiles pour votre séjour à Libreville</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {practicalInfo.map((info) => (
-              <div key={info.title} className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10 hover:border-[#00D9C5]/30 transition-all group">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <info.icon className="w-6 h-6 text-black" />
+              <div key={info.title} className="bg-white rounded-3xl p-8 border border-gray-100 hover:border-[#4169E1]/30 hover:shadow-xl transition-all group">
+                <div className="flex items-start space-x-5">
+                  <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#4169E1] transition-colors">
+                    <info.icon className="w-7 h-7 text-[#4169E1] group-hover:text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-2">{info.title}</h3>
-                    <p className="text-[#B0B0B0] text-sm">{info.content}</p>
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">{info.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{info.content}</p>
                   </div>
                 </div>
               </div>
@@ -196,30 +200,33 @@ export default function InfosPratiquesPage() {
       </section>
 
       {/* Hébergement */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Hébergement</h2>
-            <p className="text-[#B0B0B0]">Hôtels recommandés à proximité du lieu du colloque</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Hébergement</h2>
+            <p className="text-gray-600 text-lg">Hôtels recommandés à proximité du lieu du colloque</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {hotels.map((hotel) => (
-              <div key={hotel.name} className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10 hover:border-[#00D9C5]/30 transition-all">
-                <div className="flex items-center space-x-1 mb-3">
+              <div key={hotel.name} className="bg-white rounded-3xl p-6 border border-gray-100 hover:border-[#4169E1]/30 hover:shadow-xl transition-all group">
+                <div className="flex items-center space-x-1 mb-4">
                   {[...Array(hotel.stars)].map((_, i) => (
-                    <span key={i} className="text-[#00D9C5]">★</span>
+                    <span key={i} className="text-[#D4AF37]">★</span>
                   ))}
                 </div>
-                <h3 className="font-bold text-white mb-2">{hotel.name}</h3>
-                <div className="space-y-1 text-sm text-[#B0B0B0]">
+                <h3 className="font-bold text-lg text-gray-900 mb-3 group-hover:text-[#4169E1] transition-colors">{hotel.name}</h3>
+                <div className="space-y-2 text-sm text-gray-600">
                   <p className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-1 text-[#B0B0B0]" />
+                    <MapPin className="w-4 h-4 mr-2 text-gray-400" />
                     {hotel.distance}
                   </p>
-                  <p className="font-medium text-[#00D9C5]">{hotel.price}</p>
+                  <p className="font-semibold text-[#4169E1] flex items-center">
+                    <Hotel className="w-4 h-4 mr-2" />
+                    {hotel.price}
+                  </p>
                   <p className="flex items-center">
-                    <Phone className="w-4 h-4 mr-1 text-[#B0B0B0]" />
+                    <Phone className="w-4 h-4 mr-2 text-gray-400" />
                     {hotel.phone}
                   </p>
                 </div>
@@ -227,7 +234,7 @@ export default function InfosPratiquesPage() {
             ))}
           </div>
 
-          <p className="text-center text-[#B0B0B0] text-sm mt-8">
+          <p className="text-center text-gray-500 text-sm mt-10 italic">
             Des tarifs préférentiels peuvent être négociés pour les participants du colloque. 
             Contactez-nous pour plus d&apos;informations.
           </p>
@@ -235,29 +242,29 @@ export default function InfosPratiquesPage() {
       </section>
 
       {/* Formulaire de contact */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title-cyan">Nous Contacter</h2>
-            <p className="text-[#B0B0B0]">Une question ? N&apos;hésitez pas à nous écrire</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Nous Contacter</h2>
+            <p className="text-gray-600 text-lg">Une question ? N&apos;hésitez pas à nous écrire</p>
           </div>
 
           {submitted ? (
-            <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/10 text-center">
-              <div className="w-16 h-16 bg-[#00D9C5]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-[#00D9C5]" />
+            <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-xl text-center">
+              <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Message envoyé !</h3>
-              <p className="text-[#B0B0B0]">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Message envoyé !</h3>
+              <p className="text-gray-600 text-lg">
                 Nous avons bien reçu votre message et vous répondrons dans les plus brefs délais.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/10">
-              <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-xl">
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
-                    Nom complet <span className="text-[#00D9C5]">*</span>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Nom complet <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -265,12 +272,13 @@ export default function InfosPratiquesPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#00D9C5] transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-[#4169E1]/20 focus:border-[#4169E1] transition-all outline-none"
+                    placeholder="Votre nom"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
-                    Email <span className="text-[#00D9C5]">*</span>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -278,34 +286,40 @@ export default function InfosPratiquesPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#00D9C5] transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-[#4169E1]/20 focus:border-[#4169E1] transition-all outline-none"
+                    placeholder="votre@email.com"
                   />
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-white mb-2">
-                  Sujet <span className="text-[#00D9C5]">*</span>
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Sujet <span className="text-red-500">*</span>
                 </label>
-                <select
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#00D9C5] transition-colors"
-                >
-                  <option value="" className="bg-[#1A1A1A]">-- Sélectionnez un sujet --</option>
-                  <option value="inscription" className="bg-[#1A1A1A]">Question sur l&apos;inscription</option>
-                  <option value="soumission" className="bg-[#1A1A1A]">Question sur la soumission</option>
-                  <option value="hebergement" className="bg-[#1A1A1A]">Hébergement</option>
-                  <option value="visa" className="bg-[#1A1A1A]">Lettre d&apos;invitation / Visa</option>
-                  <option value="autre" className="bg-[#1A1A1A]">Autre</option>
-                </select>
+                <div className="relative">
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-[#4169E1]/20 focus:border-[#4169E1] transition-all outline-none appearance-none"
+                  >
+                    <option value="">-- Sélectionnez un sujet --</option>
+                    <option value="inscription">Question sur l&apos;inscription</option>
+                    <option value="soumission">Question sur la soumission</option>
+                    <option value="hebergement">Hébergement</option>
+                    <option value="visa">Lettre d&apos;invitation / Visa</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-white mb-2">
-                  Message <span className="text-[#00D9C5]">*</span>
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   name="message"
@@ -313,20 +327,28 @@ export default function InfosPratiquesPage() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#00D9C5] transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-[#4169E1]/20 focus:border-[#4169E1] transition-all outline-none resize-none"
+                  placeholder="Votre message..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-4 rounded-full font-bold transition-all flex items-center justify-center ${
-                  isSubmitting ? 'bg-white/20 text-white/50' : 'bg-[#00D9C5] text-black hover:scale-105'
+                className={`w-full py-4 rounded-xl font-bold text-white transition-all flex items-center justify-center text-lg ${
+                  isSubmitting 
+                    ? 'bg-gray-300 cursor-not-allowed' 
+                    : 'bg-[#4169E1] hover:bg-[#3154b3] shadow-lg hover:shadow-xl hover:-translate-y-1'
                 }`}
-                style={!isSubmitting ? { boxShadow: '0 0 30px rgba(0, 217, 197, 0.3)' } : {}}
               >
                 {isSubmitting ? (
-                  'Envoi en cours...'
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Envoi en cours...
+                  </>
                 ) : (
                   <>
                     <Send className="w-5 h-5 mr-2" />

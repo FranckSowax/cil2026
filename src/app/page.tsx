@@ -96,110 +96,107 @@ const features = [
 
 export default function Home() {
   return (
-    <div className="bg-[#0A0A0A]">
+    <div className="min-h-screen">
       {/* Hero Section avec titre principal et countdown */}
-      <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden">
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-[#4169E1]/15 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
+        
+        {/* Decorative blob */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-white/20 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Titre principal - Colloque International de Libreville */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-2 sm:mb-3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
             Colloque International de Libreville
           </h1>
 
           {/* Sous-titre - Regards croisés */}
-          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6 sm:mb-8">
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-100 mb-8 max-w-4xl mx-auto">
             « Regards croisés sur le développement en Afrique »
           </p>
 
           {/* Badge édition */}
-          <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-full mb-8 sm:mb-10">
-            <span className="w-2 h-2 bg-[#4169E1] rounded-full mr-3 animate-pulse"></span>
-            <span className="text-sm sm:text-base text-[#B0B0B0]">12è édition • CIL2026</span>
+          <div className="inline-flex items-center px-6 py-2 bg-white/10 backdrop-blur-md border border-white/30 rounded-full mb-10 shadow-lg">
+            <span className="w-2.5 h-2.5 bg-white rounded-full mr-3 animate-pulse"></span>
+            <span className="text-sm sm:text-base font-medium text-white tracking-wide">12è édition • CIL2026</span>
           </div>
 
           {/* Countdown Section */}
-          <div className="mb-6 sm:mb-8">
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#4169E1] mb-2">
+          <div className="mb-8">
+            <p className="text-lg sm:text-xl font-medium text-blue-50 mb-2">
               Début du Colloque dans
             </p>
-            <p className="text-base sm:text-lg text-white/80 mb-4 sm:mb-6">
+            <p className="text-base sm:text-lg text-white/90 mb-8 font-light tracking-wide">
               23 - 27 Mars 2026 • Libreville, Gabon
             </p>
           </div>
 
           {/* Countdown component */}
-          <div className="max-w-lg mx-auto">
+          <div className="max-w-xl mx-auto transform hover:scale-105 transition-transform duration-300">
             <Countdown targetDate={eventDate} />
           </div>
         </div>
       </section>
 
-      {/* Thème Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden bg-[#111111]">
-        {/* Mesh gradient background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
-          <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-48 sm:w-96 h-48 sm:h-96 bg-[#D4AF37]/10 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
-        </div>
-
+      {/* Thème Section - White Background */}
+      <section className="relative py-16 sm:py-24 bg-white">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             {/* Titre du thème */}
-            <div className="mb-6 sm:mb-8">
-              <p className="text-[#D4AF37] text-sm sm:text-base font-semibold uppercase tracking-wider mb-4">
+            <div className="mb-10">
+              <p className="text-[#D4AF37] text-sm sm:text-base font-bold uppercase tracking-widest mb-4">
                 Thème de cette édition
               </p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] mb-3 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-6 leading-tight">
                 « Intelligence artificielle et dynamiques des Organisations »
               </h2>
-              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
+              <p className="text-xl sm:text-2xl font-medium text-gray-700">
                 enjeux, défis et perspectives
               </p>
             </div>
 
             {/* Présidence */}
-            <p className="text-sm sm:text-base text-[#B0B0B0] mb-8 sm:mb-10">
-              Sous la présidence du <span className="text-white font-medium">Professeur Jean MOUSSAVOU</span>
+            <p className="text-base sm:text-lg text-gray-500 mb-12">
+              Sous la présidence du <span className="text-[#4169E1] font-bold">Professeur Jean MOUSSAVOU</span>
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
               <Link
                 href="/inscription"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#4169E1] text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 animate-pulse-glow text-sm sm:text-base"
+                className="btn-primary"
               >
                 S&apos;inscrire maintenant
-                <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
+                <ArrowRight className="ml-2 w-5 h-5 inline-block" />
               </Link>
               <Link
                 href="/appel-communications"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#4169E1]/30 text-[#4169E1] font-semibold rounded-full hover:bg-[#4169E1]/10 transition-all duration-300 text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#4169E1] text-[#4169E1] font-semibold rounded-full hover:bg-[#4169E1] hover:text-white transition-all duration-300 text-sm sm:text-base"
               >
                 Soumettre un papier
-                <ChevronRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
+                <ChevronRight className="ml-2 w-5 h-5" />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section - Historiques */}
-      <section className="py-10 sm:py-16 bg-gradient-to-b from-[#0A0A0A] to-[#111111] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <p className="text-[#4169E1] font-semibold text-sm sm:text-base uppercase tracking-wider">Depuis 2013</p>
+      {/* Stats Section - Transparent (Blue Gradient) */}
+      <section className="py-16 sm:py-20 border-y border-white/10 relative overflow-hidden">
+         <div className="absolute inset-0 bg-blue-900/20"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-10">
+            <p className="text-white/80 font-semibold text-sm sm:text-base uppercase tracking-wider">Une décennie d&apos;excellence</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={stat.label} className="text-center relative">
-                <div className="stat-number">
-                  {stat.value}<span className="text-xl sm:text-3xl">{stat.suffix}</span>
+                <div className="stat-number drop-shadow-sm">
+                  {stat.value}<span className="text-2xl sm:text-4xl">{stat.suffix}</span>
                 </div>
-                <div className="stat-label">{stat.label}</div>
+                <div className="stat-label text-blue-100 font-medium">{stat.label}</div>
                 {index < stats.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-8 sm:h-12 bg-white/10"></div>
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-16 bg-white/20"></div>
                 )}
               </div>
             ))}
@@ -207,38 +204,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Profils des Participants */}
-      <section className="py-12 sm:py-16 md:py-20 bg-[#0A0A0A]">
+      {/* Profils des Participants - White Background */}
+      <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="section-title">Profils des <span className="text-[#4169E1]">Participants</span></h2>
-            <p className="text-[#B0B0B0] text-sm sm:text-base max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Profils des <span className="text-[#4169E1]">Participants</span>
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
               Le CIL réunit une diversité de profils pour des échanges riches et interdisciplinaires
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {participantProfiles.map((profile) => (
               <div
                 key={profile.label}
-                className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 hover:border-[#4169E1]/30 transition-all duration-300 text-center group"
+                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#4169E1]/20 transition-all duration-300 text-center group"
               >
-                <div className="w-12 sm:w-14 h-12 sm:h-14 mx-auto bg-gradient-to-br from-[#4169E1] to-[#D4AF37] rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
-                  <profile.icon className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
+                <div className="w-14 h-14 mx-auto bg-[#4169E1]/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-[#4169E1]">
+                  <profile.icon className="w-7 h-7 text-[#4169E1] group-hover:text-white transition-colors" />
                 </div>
-                <p className="text-white font-medium text-sm sm:text-base">{profile.label}</p>
+                <p className="text-gray-800 font-semibold text-sm sm:text-base">{profile.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section Géographique - Pays et Continents */}
-      <section className="py-12 sm:py-16 md:py-20 bg-[#111111]">
+      {/* Section Géographique - Pays et Continents - Transparent (Blue Gradient) */}
+      <section className="py-16 sm:py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="section-title-cyan">Participation <span className="text-white">Internationale</span></h2>
-            <p className="text-[#B0B0B0] text-sm sm:text-base max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Participation <span className="text-blue-200">Internationale</span>
+            </h2>
+            <p className="text-blue-50 text-base sm:text-lg max-w-2xl mx-auto">
               Des participants de tous les continents pour des perspectives diversifiées
             </p>
           </div>
@@ -247,17 +248,19 @@ export default function Home() {
             {continents.map((continent) => (
               <div
                 key={continent.name}
-                className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-[#4169E1]/30 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
               >
-                <div className="flex items-center mb-4">
-                  <Flag className="w-5 h-5 text-[#4169E1] mr-2" />
-                  <h3 className="text-xl font-bold text-white">{continent.name}</h3>
+                <div className="flex items-center mb-6">
+                  <div className="p-2 bg-white/10 rounded-lg mr-4">
+                    <Flag className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{continent.name}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {continent.countries.map((country) => (
                     <span
                       key={country}
-                      className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs sm:text-sm text-[#B0B0B0]"
+                      className="px-3 py-1.5 bg-white/20 border border-white/10 rounded-full text-sm font-medium text-white shadow-sm"
                     >
                       {country}
                     </span>
@@ -269,50 +272,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section - Ordre décroissant */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      {/* Pricing Section - White Background */}
+      <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="section-title">Tarifs d&apos;<span className="text-[#4169E1]">Inscription</span></h2>
-            <p className="text-[#B0B0B0] text-sm sm:text-base max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Tarifs d&apos;<span className="text-[#4169E1]">Inscription</span>
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
               Choisissez la formule adaptée à votre profil
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {pricingPlans.map((plan, index) => (
               <div
                 key={plan.name}
-                className={`relative bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-5 border transition-all duration-300 hover:scale-[1.02] ${
+                className={`relative bg-white rounded-3xl p-6 border transition-all duration-300 hover:scale-[1.02] flex flex-col ${
                   index === 0
-                    ? 'border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.2)]'
-                    : 'border-white/10 hover:border-[#4169E1]/30'
+                    ? 'border-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.15)] ring-1 ring-[#D4AF37]/50'
+                    : 'border-gray-100 shadow-lg hover:shadow-xl hover:border-[#4169E1]/30'
                 }`}
               >
                 {index === 0 && (
-                  <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-0.5 sm:py-1 bg-[#D4AF37] text-black text-[10px] sm:text-xs font-bold rounded-full">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#D4AF37] text-white text-xs font-bold rounded-full shadow-md">
                     VIP
                   </div>
                 )}
-                <h3 className="text-base sm:text-lg font-bold text-white mb-3">{plan.name}</h3>
-                <div className="mb-4">
-                  <span className="text-xl sm:text-2xl font-bold text-[#4169E1]">{plan.price}</span>
-                  <span className="text-[#B0B0B0] ml-1 text-xs sm:text-sm">FCFA</span>
+                <h3 className="text-lg font-bold text-gray-900 mb-4 min-h-[56px] flex items-center">{plan.name}</h3>
+                <div className="mb-6 pb-6 border-b border-gray-100">
+                  <span className="text-3xl font-bold text-[#4169E1]">{plan.price}</span>
+                  <span className="text-gray-500 ml-1 text-sm font-medium">FCFA</span>
                 </div>
-                <ul className="space-y-2 mb-4 sm:mb-6">
+                <ul className="space-y-3 mb-8 flex-grow">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-xs text-[#B0B0B0]">
-                      <Check className="w-3 h-3 text-[#4169E1] mr-2 flex-shrink-0" />
-                      {feature}
+                    <li key={feature} className="flex items-start text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-[#4169E1] mr-2 flex-shrink-0 mt-0.5" />
+                      <span className="leading-tight">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/inscription"
-                  className={`block w-full py-2 text-center rounded-full font-semibold transition-all text-xs sm:text-sm ${
+                  className={`block w-full py-3 text-center rounded-xl font-bold transition-all text-sm ${
                     index === 0
-                      ? 'bg-[#D4AF37] text-black hover:brightness-110'
-                      : 'bg-white/5 text-white border border-white/10 hover:bg-[#4169E1] hover:border-[#4169E1]'
+                      ? 'bg-[#D4AF37] text-white hover:bg-[#b5952f] shadow-md'
+                      : 'bg-gray-50 text-[#4169E1] hover:bg-[#4169E1] hover:text-white'
                   }`}
                 >
                   S&apos;inscrire
@@ -321,22 +326,24 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-6 sm:mt-8 p-4 bg-[#1A1A1A] rounded-xl border border-white/10">
-            <p className="text-[#B0B0B0] text-sm sm:text-base mb-2">
-              <span className="font-semibold text-white">Atelier Pré-CIL (NVIVO + SEM)</span> : <span className="text-[#4169E1] font-bold">35 000 FCFA</span>
+          <div className="text-center mt-10 p-6 bg-blue-50/50 rounded-2xl border border-blue-100 max-w-3xl mx-auto">
+            <p className="text-gray-700 text-lg mb-2">
+              <span className="font-bold text-[#4169E1]">Atelier Pré-CIL (NVIVO + SEM)</span> : <span className="text-gray-900 font-bold text-xl">35 000 FCFA</span>
             </p>
-            <p className="text-[#B0B0B0]/70 text-xs">
+            <p className="text-gray-500 text-sm italic">
               (hors frais de participation au colloque)
             </p>
           </div>
 
-          <div className="mt-8 bg-[#1A1A1A] rounded-xl p-6 border border-white/10">
-            <h4 className="text-white font-semibold mb-4 text-center">L&apos;inscription comprend :</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+          <div className="mt-10 bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+            <h4 className="text-gray-900 font-bold mb-6 text-center text-lg">L&apos;inscription comprend :</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 text-center">
               {["Accueil à l'aéroport", "Participation aux sessions", "Pauses café", "Déjeuners", "Soirée de gala", "Attestation"].map((item) => (
-                <div key={item} className="flex flex-col items-center">
-                  <Check className="w-5 h-5 text-[#4169E1] mb-2" />
-                  <span className="text-xs text-[#B0B0B0]">{item}</span>
+                <div key={item} className="flex flex-col items-center group">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mb-3 group-hover:bg-[#4169E1] transition-colors">
+                    <Check className="w-5 h-5 text-[#4169E1] group-hover:text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-600">{item}</span>
                 </div>
               ))}
             </div>
@@ -344,69 +351,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#111111]">
+      {/* Features Section - Transparent (Blue Gradient) */}
+      <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="section-title-cyan">Pourquoi <span className="text-white">Participer ?</span></h2>
-            <p className="text-[#B0B0B0] text-sm sm:text-base max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Pourquoi <span className="text-blue-200">Participer ?</span>
+            </h2>
+            <p className="text-blue-50 text-base sm:text-lg max-w-2xl mx-auto">
               Une expérience unique au cœur de l&apos;innovation africaine
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border border-white/10 hover:border-[#4169E1]/30 transition-all duration-300 group"
+                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 group hover:-translate-y-1"
               >
-                <div className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 bg-gradient-to-br from-[#4169E1] to-[#D4AF37] rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-5 sm:w-6 md:w-7 h-5 sm:h-6 md:h-7 text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-white to-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                  <feature.icon className="w-7 h-7 text-[#4169E1]" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 sm:mb-3">{feature.title}</h3>
-                <p className="text-[#B0B0B0] text-xs sm:text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                <p className="text-blue-50 text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section Partenaires */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      {/* Section Partenaires - White Background */}
+      <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="section-title">Nos <span className="text-[#4169E1]">Partenaires</span></h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+              Nos <span className="text-[#4169E1]">Partenaires</span>
+            </h2>
           </div>
 
           {/* Organisateur principal */}
-          <div className="mb-8">
-            <h3 className="text-[#D4AF37] font-semibold text-sm uppercase tracking-wider mb-4 text-center">Organisateur principal</h3>
+          <div className="mb-12">
+            <h3 className="text-gray-400 font-bold text-sm uppercase tracking-widest mb-6 text-center">Organisateur principal</h3>
             <div className="flex justify-center">
-              <div className="bg-[#1A1A1A] rounded-xl px-8 py-4 border border-[#D4AF37]/30">
-                <span className="text-white font-bold text-lg">LARSIG</span>
+              <div className="bg-white rounded-2xl px-10 py-6 border-2 border-[#D4AF37]/20 shadow-lg flex items-center gap-4">
+                <span className="text-[#D4AF37] font-bold text-2xl">LARSIG</span>
               </div>
             </div>
           </div>
 
           {/* Partenaires */}
-          <div className="mb-8">
-            <h3 className="text-[#4169E1] font-semibold text-sm uppercase tracking-wider mb-4 text-center">Partenaires</h3>
+          <div className="mb-12">
+            <h3 className="text-[#4169E1] font-bold text-sm uppercase tracking-widest mb-6 text-center">Partenaires</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {partners.partenaires.map((partner) => (
-                <div key={partner} className="bg-[#1A1A1A] rounded-xl px-6 py-3 border border-white/10 hover:border-[#4169E1]/30 transition-all">
-                  <span className="text-white text-sm">{partner}</span>
+                <div key={partner} className="bg-gray-50 rounded-xl px-6 py-4 border border-gray-100 hover:border-[#4169E1] hover:shadow-md transition-all">
+                  <span className="text-gray-700 font-medium text-sm">{partner}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Soutien scientifique */}
-          <div className="mb-8">
-            <h3 className="text-[#4169E1] font-semibold text-sm uppercase tracking-wider mb-4 text-center">Soutien scientifique</h3>
+          <div className="mb-12">
+            <h3 className="text-[#4169E1] font-bold text-sm uppercase tracking-widest mb-6 text-center">Soutien scientifique</h3>
             <div className="flex flex-wrap justify-center gap-3">
               {partners.soutienScientifique.map((partner) => (
-                <div key={partner} className="bg-[#1A1A1A] rounded-lg px-4 py-2 border border-white/10 hover:border-[#4169E1]/30 transition-all">
-                  <span className="text-[#B0B0B0] text-xs sm:text-sm">{partner}</span>
+                <div key={partner} className="bg-white rounded-lg px-4 py-2 border border-gray-100 hover:border-[#4169E1]/50 transition-all shadow-sm">
+                  <span className="text-gray-500 text-sm font-medium">{partner}</span>
                 </div>
               ))}
             </div>
@@ -414,11 +425,11 @@ export default function Home() {
 
           {/* Éditions */}
           <div>
-            <h3 className="text-[#4169E1] font-semibold text-sm uppercase tracking-wider mb-4 text-center">Éditions</h3>
+            <h3 className="text-[#4169E1] font-bold text-sm uppercase tracking-widest mb-6 text-center">Éditions</h3>
             <div className="flex justify-center">
               {partners.editions.map((partner) => (
-                <div key={partner} className="bg-[#1A1A1A] rounded-xl px-6 py-3 border border-white/10">
-                  <span className="text-white text-sm">{partner}</span>
+                <div key={partner} className="bg-white rounded-xl px-6 py-4 border border-gray-100 shadow-sm">
+                  <span className="text-gray-700 font-bold">{partner}</span>
                 </div>
               ))}
             </div>
@@ -426,31 +437,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#111111] relative overflow-hidden">
+      {/* CTA Section - Transparent (Blue Gradient) */}
+      <section className="py-20 sm:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-[#4169E1]/10 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 rounded-full filter blur-[150px]"></div>
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-            Prêt à rejoindre le <span className="text-[#4169E1]">CIL 2026</span> ?
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight drop-shadow-lg">
+            Prêt à rejoindre le <span className="text-blue-200">CIL 2026</span> ?
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#B0B0B0] mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed">
             Rejoignez plus de 1000 chercheurs, praticiens et décideurs pour explorer
             l&apos;avenir de l&apos;IA en Afrique.
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6">
             <Link
               href="/inscription"
-              className="inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#4169E1] text-white font-bold rounded-full hover:scale-105 transition-all duration-300 text-sm sm:text-base md:text-lg"
-              style={{ boxShadow: '0 0 40px rgba(65, 105, 225, 0.4)' }}
+              className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-[#4169E1] font-bold rounded-full hover:scale-105 transition-all duration-300 text-lg shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)]"
             >
               S&apos;inscrire maintenant
-              <ArrowRight className="ml-2 sm:ml-3 w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6" />
+              <ArrowRight className="ml-3 w-6 h-6" />
             </Link>
             <Link
               href="/presentation"
-              className="inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 border-2 border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition-all duration-300 text-sm sm:text-base md:text-lg"
+              className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 text-lg"
             >
               En savoir plus
             </Link>

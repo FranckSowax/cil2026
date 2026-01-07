@@ -106,13 +106,13 @@ const getSessionIcon = (type: string) => {
 
 const getSessionColor = (type: string) => {
   switch (type) {
-    case 'keynote': return 'bg-[#00D9C5]/20 text-[#00D9C5] border-[#00D9C5]/30';
-    case 'session': return 'bg-[#B8B5FF]/20 text-[#B8B5FF] border-[#B8B5FF]/30';
-    case 'workshop': return 'bg-green-500/20 text-green-400 border-green-500/30';
-    case 'break': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-    case 'social': return 'bg-pink-500/20 text-pink-400 border-pink-500/30';
-    case 'registration': return 'bg-white/10 text-[#B0B0B0] border-white/20';
-    default: return 'bg-white/10 text-[#B0B0B0] border-white/20';
+    case 'keynote': return 'bg-[#4169E1]/10 text-[#4169E1] border-[#4169E1]/30';
+    case 'session': return 'bg-blue-100/50 text-blue-700 border-blue-200';
+    case 'workshop': return 'bg-green-100/50 text-green-700 border-green-200';
+    case 'break': return 'bg-orange-100/50 text-orange-700 border-orange-200';
+    case 'social': return 'bg-purple-100/50 text-purple-700 border-purple-200';
+    case 'registration': return 'bg-gray-100 text-gray-600 border-gray-200';
+    default: return 'bg-gray-100 text-gray-600 border-gray-200';
   }
 };
 
@@ -136,20 +136,20 @@ export default function ProgrammePage() {
   ];
 
   return (
-    <div className="bg-[#0A0A0A]">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
-        <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-40 sm:w-72 h-40 sm:h-72 bg-[#B8B5FF]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1e3a8a]"></div>
+        <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-40 sm:w-72 h-40 sm:h-72 bg-white/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
-              <span className="text-xs sm:text-sm text-[#B0B0B0]">23 - 27 Mars 2026</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 border border-white/20 rounded-full mb-4 sm:mb-6 backdrop-blur-sm">
+              <span className="text-xs sm:text-sm text-white font-medium">23 - 27 Mars 2026</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-              Programme du <span className="text-[#00D9C5]">Colloque</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-sm">
+              Programme du <span className="text-blue-200">Colloque</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
+            <p className="text-base sm:text-lg md:text-xl text-blue-50 max-w-3xl mx-auto px-2 font-light">
               5 jours d&apos;échanges, de conférences et d&apos;ateliers sur l&apos;Intelligence Artificielle 
               et les Dynamiques des Organisations
             </p>
@@ -158,18 +158,18 @@ export default function ProgrammePage() {
       </section>
 
       {/* Timeline Navigation */}
-      <section className="py-4 sm:py-6 bg-[#111111] border-b border-white/10 sticky top-16 sm:top-20 z-40">
+      <section className="py-4 sm:py-6 bg-white border-b border-gray-200 sticky top-16 sm:top-20 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="flex justify-center">
-            <div className="inline-flex bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-0.5 sm:p-1 border border-white/10 overflow-x-auto">
+            <div className="inline-flex bg-gray-100 rounded-xl sm:rounded-2xl p-1 sm:p-1.5 border border-gray-200 overflow-x-auto shadow-inner">
               {days.map((day) => (
                 <button
                   key={day.key}
                   onClick={() => setActiveDay(day.key)}
-                  className={`px-3 sm:px-5 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all text-xs sm:text-sm ${
+                  className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-bold transition-all text-xs sm:text-sm ${
                     activeDay === day.key
-                      ? 'bg-[#00D9C5] text-black shadow-lg'
-                      : 'text-[#B0B0B0] hover:text-white hover:bg-white/5'
+                      ? 'bg-white text-[#4169E1] shadow-md ring-1 ring-gray-100'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-200/50'
                   }`}
                 >
                   <span className="hidden sm:inline">{day.label}</span>
@@ -182,15 +182,15 @@ export default function ProgrammePage() {
       </section>
 
       {/* Programme du jour */}
-      <section className="py-12 bg-[#0A0A0A]">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-white">{programData[activeDay].date}</h2>
-            <p className="text-[#00D9C5]">{programData[activeDay].title}</p>
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{programData[activeDay].date}</h2>
+            <p className="text-[#4169E1] font-medium text-lg">{programData[activeDay].title}</p>
           </div>
 
           {/* Légende */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
             {[
               { type: 'keynote', label: 'Plénière' },
               { type: 'session', label: 'Session' },
@@ -214,51 +214,51 @@ export default function ProgrammePage() {
               return (
                 <div
                   key={sessionId}
-                  className={`bg-[#1A1A1A] rounded-2xl border border-white/10 overflow-hidden transition-all hover:border-white/20 ${
-                    session.type === 'break' ? 'opacity-60' : ''
+                  className={`bg-white rounded-2xl border border-gray-100 overflow-hidden transition-all hover:shadow-lg hover:border-blue-100 ${
+                    session.type === 'break' ? 'opacity-80 bg-gray-50/50' : 'shadow-sm'
                   }`}
                 >
                   <button
                     onClick={() => toggleSession(sessionId)}
-                    className="w-full p-4 flex items-start space-x-4 text-left"
+                    className="w-full p-5 flex items-start space-x-4 text-left"
                   >
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border ${getSessionColor(session.type)}`}>
                       <SessionIcon className="w-6 h-6" />
                     </div>
                     <div className="flex-grow min-w-0">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <Clock className="w-4 h-4 text-[#B0B0B0]" />
-                        <span className="text-sm font-medium text-[#B0B0B0]">{session.time}</span>
+                      <div className="flex items-center space-x-2 mb-1.5">
+                        <Clock className="w-4 h-4 text-gray-400" />
+                        <span className="text-sm font-semibold text-gray-500">{session.time}</span>
                       </div>
-                      <h3 className="font-bold text-white mb-1">{session.title}</h3>
+                      <h3 className="font-bold text-gray-900 mb-1.5 text-lg leading-tight">{session.title}</h3>
                       {session.location && (
-                        <div className="flex items-center space-x-1 text-sm text-[#B0B0B0]">
-                          <MapPin className="w-3 h-3" />
+                        <div className="flex items-center space-x-1 text-sm text-gray-500">
+                          <MapPin className="w-3.5 h-3.5" />
                           <span>{session.location}</span>
                         </div>
                       )}
                     </div>
                     {(session.description || session.speaker) && (
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 pt-1">
                         {isExpanded ? (
-                          <ChevronUp className="w-5 h-5 text-[#B0B0B0]" />
+                          <ChevronUp className="w-5 h-5 text-gray-400" />
                         ) : (
-                          <ChevronDown className="w-5 h-5 text-[#B0B0B0]" />
+                          <ChevronDown className="w-5 h-5 text-gray-400" />
                         )}
                       </div>
                     )}
                   </button>
 
                   {isExpanded && (session.description || session.speaker) && (
-                    <div className="px-4 pb-4 pt-0 ml-16">
+                    <div className="px-5 pb-5 pt-0 ml-16 border-l-2 border-gray-100 pl-6">
                       {session.description && (
-                        <p className="text-[#B0B0B0] text-sm mb-2">{session.description}</p>
+                        <p className="text-gray-600 text-sm mb-3 leading-relaxed">{session.description}</p>
                       )}
                       {session.speaker && (
-                        <p className="text-sm">
-                          <span className="text-[#B0B0B0]">Intervenant :</span>{' '}
-                          <span className="font-medium text-[#00D9C5]">{session.speaker}</span>
-                        </p>
+                        <div className="flex items-center gap-2 text-sm bg-blue-50/50 p-2 rounded-lg inline-block">
+                          <span className="text-gray-500 font-medium">Intervenant :</span>
+                          <span className="font-bold text-[#4169E1]">{session.speaker}</span>
+                        </div>
                       )}
                     </div>
                   )}
@@ -270,29 +270,29 @@ export default function ProgrammePage() {
       </section>
 
       {/* Info supplémentaire */}
-      <section className="py-16 bg-[#111111]">
+      <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-[#1A1A1A] rounded-3xl p-6 text-center border border-white/10 hover:border-[#00D9C5]/30 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <BookOpen className="w-8 h-8 text-black" />
+            <div className="bg-gray-50 rounded-3xl p-8 text-center border border-gray-100 hover:border-[#4169E1]/20 hover:shadow-lg transition-all group">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+                <BookOpen className="w-8 h-8 text-[#4169E1]" />
               </div>
-              <h3 className="font-bold text-lg text-white mb-2">4 Ateliers</h3>
-              <p className="text-[#B0B0B0] text-sm">Formations pratiques sur 2 jours avant le colloque</p>
+              <h3 className="font-bold text-xl text-gray-900 mb-3">4 Ateliers</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">Formations pratiques sur 2 jours avant le colloque</p>
             </div>
-            <div className="bg-[#1A1A1A] rounded-3xl p-6 text-center border border-white/10 hover:border-[#00D9C5]/30 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Users className="w-8 h-8 text-black" />
+            <div className="bg-gray-50 rounded-3xl p-8 text-center border border-gray-100 hover:border-[#4169E1]/20 hover:shadow-lg transition-all group">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+                <Users className="w-8 h-8 text-[#4169E1]" />
               </div>
-              <h3 className="font-bold text-lg text-white mb-2">10+ Sessions</h3>
-              <p className="text-[#B0B0B0] text-sm">Présentations de communications scientifiques</p>
+              <h3 className="font-bold text-xl text-gray-900 mb-3">10+ Sessions</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">Présentations de communications scientifiques</p>
             </div>
-            <div className="bg-[#1A1A1A] rounded-3xl p-6 text-center border border-white/10 hover:border-[#00D9C5]/30 transition-all group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <Award className="w-8 h-8 text-black" />
+            <div className="bg-gray-50 rounded-3xl p-8 text-center border border-gray-100 hover:border-[#4169E1]/20 hover:shadow-lg transition-all group">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+                <Award className="w-8 h-8 text-[#4169E1]" />
               </div>
-              <h3 className="font-bold text-lg text-white mb-2">3 Plénières</h3>
-              <p className="text-[#B0B0B0] text-sm">Conférences avec des experts internationaux</p>
+              <h3 className="font-bold text-xl text-gray-900 mb-3">3 Plénières</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">Conférences avec des experts internationaux</p>
             </div>
           </div>
         </div>

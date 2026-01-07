@@ -8,11 +8,12 @@
   --primary-light: #5A7FE8;
   --accent-gold: #D4AF37;  /* Or - Accent */
   --accent-green: #228B22;  /* Vert Gabon */
-  --bg-dark: #0A0A0A;
-  --bg-card: #1A1A1A;
-  --bg-section: #111111;
+  --bg-dark: #4169E1; /* Changed from Black to Royal Blue */
+  --bg-card: #FFFFFF; /* Changed from Dark to White */
+  --bg-section: #F8FAFC; /* Light gray/white for sections */
   --text-primary: #FFFFFF;
-  --text-secondary: #B0B0B0;
+  --text-secondary: #E0E7FF; /* Lighter blue/white for secondary text on blue bg */
+  --text-on-white: #1e3a8a; /* Dark blue for text on white bg */
   --accent-purple: #B8B5FF;
 }
 
@@ -26,20 +27,23 @@
 body {
   background-color: var(--bg-dark);
   color: var(--text-primary);
+  background-image: linear-gradient(135deg, #4169E1 0%, #1e3a8a 100%);
+  min-height: 100vh;
 }
 
 /* Boutons - Ultra Responsive */
 .btn-primary {
-  @apply bg-[#4169E1] text-white px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 text-sm sm:text-base;
-  box-shadow: 0 0 20px rgba(65, 105, 225, 0.3);
+  @apply bg-white text-[#4169E1] px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 text-sm sm:text-base;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 40px rgba(65, 105, 225, 0.5);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+  @apply bg-gray-50;
 }
 
 .btn-secondary {
-  @apply border-2 border-[#4169E1] text-[#4169E1] px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:bg-[#4169E1] hover:text-white transition-all duration-300 bg-transparent text-sm sm:text-base;
+  @apply border-2 border-white text-white px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 rounded-full font-semibold hover:bg-white hover:text-[#4169E1] transition-all duration-300 bg-transparent text-sm sm:text-base;
 }
 
 /* Titres - Ultra Responsive */
@@ -48,26 +52,27 @@ body {
 }
 
 .section-title-cyan {
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-4 sm:mb-6 tracking-tight;
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-tight;
 }
 
 /* Titre du thème - Hiérarchie typographique */
 .theme-title-main {
-  @apply text-[20px] sm:text-[22px] md:text-[24px] font-bold text-[#4169E1] leading-tight;
+  @apply text-[20px] sm:text-[22px] md:text-[24px] font-bold text-white leading-tight;
 }
 
 .theme-title-sub {
-  @apply text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-[#4169E1] leading-tight;
+  @apply text-[16px] sm:text-[18px] md:text-[20px] font-semibold text-white/90 leading-tight;
 }
 
 /* Cards avec effet glow */
 .card-dark {
-  @apply bg-[#1A1A1A] rounded-3xl p-8 border border-white/10 transition-all duration-400;
+  @apply bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 transition-all duration-400;
 }
 
 .card-dark:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 40px rgba(65, 105, 225, 0.2);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  @apply bg-white/15;
 }
 
 /* Animation pour le carrousel des partenaires */

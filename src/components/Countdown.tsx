@@ -49,11 +49,11 @@ export default function Countdown({ targetDate }: CountdownProps) {
 
   if (!mounted) {
     return (
-      <div className="grid grid-cols-4 gap-2 sm:gap-3">
+      <div className="grid grid-cols-4 gap-3 sm:gap-4">
         {timeUnits.map((unit) => (
-          <div key={unit.label} className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-2 sm:p-3 md:p-4 text-center border border-white/10">
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] font-mono">--</div>
-            <div className="text-[10px] sm:text-xs text-[#B0B0B0] uppercase tracking-wider mt-1 sm:mt-2">{unit.label}</div>
+          <div key={unit.label} className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 md:p-5 text-center border border-white/20 shadow-lg">
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono">--</div>
+            <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium">{unit.label}</div>
           </div>
         ))}
       </div>
@@ -61,16 +61,16 @@ export default function Countdown({ targetDate }: CountdownProps) {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-2 sm:gap-3">
+    <div className="grid grid-cols-4 gap-3 sm:gap-4">
       {timeUnits.map((unit) => (
         <div
           key={unit.label}
-          className="bg-[#1A1A1A] rounded-xl sm:rounded-2xl p-2 sm:p-3 md:p-4 text-center border border-white/10 hover:border-[#4169E1]/30 transition-colors"
+          className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 md:p-5 text-center border border-white/20 shadow-lg hover:bg-white/20 transition-colors"
         >
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] font-mono">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-mono drop-shadow-md">
             {unit.value.toString().padStart(2, '0')}
           </div>
-          <div className="text-[10px] sm:text-xs text-[#B0B0B0] uppercase tracking-wider mt-1 sm:mt-2">{unit.label}</div>
+          <div className="text-[10px] sm:text-xs text-blue-100 uppercase tracking-wider mt-1 sm:mt-2 font-medium">{unit.label}</div>
         </div>
       ))}
     </div>

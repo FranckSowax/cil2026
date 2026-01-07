@@ -81,20 +81,20 @@ const objectives = [
 
 export default function PresentationPage() {
   return (
-    <div className="bg-[#0A0A0A]">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
-        <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1e3a8a]"></div>
+        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-white/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
-              <span className="text-xs sm:text-sm text-[#B0B0B0]">À propos du CIL 2026</span>
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 border border-white/20 rounded-full mb-4 sm:mb-6 backdrop-blur-sm">
+              <span className="text-xs sm:text-sm text-white font-medium">À propos du CIL 2026</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-              Présentation & <span className="text-[#00D9C5]">Contexte</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 tracking-tight drop-shadow-sm">
+              Présentation & <span className="text-blue-200">Contexte</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
+            <p className="text-base sm:text-lg md:text-xl text-blue-50 max-w-3xl mx-auto px-2 font-light">
               Découvrez le 12ème Colloque International de Libreville et son thème central : 
               l&apos;Intelligence Artificielle et les Dynamiques des Organisations
             </p>
@@ -103,48 +103,48 @@ export default function PresentationPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-12 sm:py-16 md:py-20 bg-[#111111]">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <h2 className="section-title">Le Colloque International de Libreville</h2>
-              <p className="text-[#B0B0B0] mb-6 leading-relaxed">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Le Colloque International de Libreville</h2>
+              <p className="text-gray-600 mb-6 leading-relaxed text-lg">
                 L&apos;intelligence artificielle (IA) s&apos;impose aujourd&apos;hui comme un moteur majeur des transformations 
                 contemporaines, aussi bien dans les secteurs publics que privés. L&apos;ampleur des innovations 
                 technologiques récentes reconfigure les modes de production, les pratiques décisionnelles, 
                 la gestion des organisations et, plus largement, les dynamiques sociales, économiques et culturelles.
               </p>
-              <p className="text-[#B0B0B0] mb-6 leading-relaxed">
-                Le <strong className="text-[#00D9C5]">12ème Colloque International de Libreville (CIL2026)</strong> s&apos;inscrit 
+              <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                Le <strong className="text-[#4169E1]">12ème Colloque International de Libreville (CIL2026)</strong> s&apos;inscrit 
                 dans la continuité d&apos;une tradition scientifique visant à questionner les mutations profondes des 
                 organisations et des sociétés, à l&apos;aune des avancées technologiques et des impératifs de durabilité.
               </p>
-              <p className="text-[#B0B0B0] leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-lg">
                 En Afrique, ces transformations prennent une dimension particulière. Les défis structurels 
                 (fragilité institutionnelle, infrastructures numériques limitées) complexifient l&apos;intégration 
                 des technologies intelligentes. Simultanément, le continent se distingue par une 
-                <strong className="text-[#00D9C5]"> remarquable créativité sociale</strong>, des innovations endogènes 
+                <strong className="text-[#4169E1]"> remarquable créativité sociale</strong>, des innovations endogènes 
                 et une volonté croissante de reconquête de la souveraineté numérique.
               </p>
             </div>
             <div className="relative">
-              <div className="bg-[#1A1A1A] border border-white/10 rounded-3xl p-8">
+              <div className="bg-gray-50 border border-gray-100 rounded-3xl p-8 shadow-xl">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                    <div className="text-4xl font-bold text-[#00D9C5]">12ème</div>
-                    <div className="text-[#B0B0B0] text-sm mt-1">Édition</div>
+                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl font-bold text-[#4169E1]">12ème</div>
+                    <div className="text-gray-500 text-sm mt-1 font-medium">Édition</div>
                   </div>
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                    <div className="text-4xl font-bold text-[#00D9C5]">5</div>
-                    <div className="text-[#B0B0B0] text-sm mt-1">Jours</div>
+                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl font-bold text-[#4169E1]">5</div>
+                    <div className="text-gray-500 text-sm mt-1 font-medium">Jours</div>
                   </div>
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                    <div className="text-4xl font-bold text-[#B8B5FF]">4</div>
-                    <div className="text-[#B0B0B0] text-sm mt-1">Axes thématiques</div>
+                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl font-bold text-[#D4AF37]">4</div>
+                    <div className="text-gray-500 text-sm mt-1 font-medium">Axes thématiques</div>
                   </div>
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                    <div className="text-4xl font-bold text-[#B8B5FF]">15+</div>
-                    <div className="text-[#B0B0B0] text-sm mt-1">Pays représentés</div>
+                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="text-4xl font-bold text-[#D4AF37]">15+</div>
+                    <div className="text-gray-500 text-sm mt-1 font-medium">Pays représentés</div>
                   </div>
                 </div>
               </div>
@@ -154,11 +154,11 @@ export default function PresentationPage() {
       </section>
 
       {/* Objectifs */}
-      <section className="py-20 bg-[#0A0A0A]">
+      <section className="py-16 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Objectifs du Colloque</h2>
-            <p className="text-[#B0B0B0] max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Objectifs du Colloque</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
               Le CIL 2026 poursuit plusieurs objectifs ambitieux pour contribuer au développement 
               des connaissances et des pratiques en matière d&apos;IA.
             </p>
@@ -168,13 +168,13 @@ export default function PresentationPage() {
             {objectives.map((objective) => (
               <div 
                 key={objective.title}
-                className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/10 hover:border-[#00D9C5]/30 transition-all group"
+                className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#4169E1]/30 hover:shadow-xl transition-all group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <objective.icon className="w-7 h-7 text-black" />
+                <div className="w-14 h-14 bg-[#4169E1]/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform group-hover:bg-[#4169E1]">
+                  <objective.icon className="w-7 h-7 text-[#4169E1] group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{objective.title}</h3>
-                <p className="text-[#B0B0B0] text-sm">{objective.description}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{objective.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{objective.description}</p>
               </div>
             ))}
           </div>
@@ -182,11 +182,11 @@ export default function PresentationPage() {
       </section>
 
       {/* Axes thématiques */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title-cyan">Axes Thématiques</h2>
-            <p className="text-[#B0B0B0] max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Axes Thématiques</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
               Le colloque s&apos;articule autour de quatre axes thématiques majeurs qui couvrent 
               les différentes dimensions de l&apos;IA dans les organisations.
             </p>
@@ -196,24 +196,24 @@ export default function PresentationPage() {
             {thematicAxes.map((axis) => (
               <div 
                 key={axis.number}
-                className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/10 hover:border-[#00D9C5]/30 transition-all"
+                className="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:border-[#4169E1]/30 hover:shadow-lg transition-all"
               >
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-8">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-2xl flex items-center justify-center">
-                      <span className="text-2xl font-bold text-black">{axis.number}</span>
+                    <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100">
+                      <span className="text-3xl font-bold text-[#4169E1]">{axis.number}</span>
                     </div>
                   </div>
                   <div className="flex-grow">
-                    <h3 className="text-xl font-bold text-white mb-3">
-                      Axe {axis.number} : <span className="text-[#00D9C5]">{axis.title}</span>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      Axe {axis.number} : <span className="text-[#4169E1]">{axis.title}</span>
                     </h3>
-                    <p className="text-[#B0B0B0] mb-4">{axis.description}</p>
+                    <p className="text-gray-600 mb-6 text-lg">{axis.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {axis.topics.map((topic) => (
                         <span 
                           key={topic}
-                          className="px-3 py-1 bg-white/5 rounded-full text-sm text-[#B0B0B0] border border-white/10 hover:border-[#00D9C5]/30 hover:text-[#00D9C5] transition-colors"
+                          className="px-4 py-2 bg-white rounded-full text-sm text-gray-700 border border-gray-200 hover:border-[#4169E1] hover:text-[#4169E1] transition-all shadow-sm"
                         >
                           {topic}
                         </span>
@@ -228,38 +228,44 @@ export default function PresentationPage() {
       </section>
 
       {/* Message du Président */}
-      <section className="py-20 bg-[#0A0A0A] relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden bg-[#4169E1]">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00D9C5]/5 rounded-full filter blur-[100px]"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 rounded-full filter blur-[150px]"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <Award className="w-16 h-16 mx-auto mb-6 text-[#00D9C5]" />
-            <h2 className="text-3xl font-bold text-white mb-6">Message du Président du Comité Scientifique</h2>
-            <blockquote className="text-xl text-[#B0B0B0] italic mb-8 leading-relaxed">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <Award className="w-16 h-16 mx-auto mb-6 text-white/80" />
+            <h2 className="text-3xl font-bold mb-8">Message du Président du Comité Scientifique</h2>
+            <blockquote className="text-xl md:text-2xl text-white/90 italic mb-10 leading-relaxed font-light">
               &quot;L&apos;intelligence artificielle représente une révolution majeure pour nos organisations. 
               Le CIL 2026 sera l&apos;occasion de réfléchir ensemble aux opportunités et aux défis 
               que cette technologie pose, en particulier dans le contexte africain. 
               Nous vous invitons à contribuer à cette réflexion collective par vos travaux de recherche 
               et vos retours d&apos;expérience.&quot;
             </blockquote>
-            <p className="font-semibold text-[#00D9C5]">Professeur Jean Moussavou</p>
-            <p className="text-[#B0B0B0]">Président du Comité Scientifique - CIL 2026</p>
+            <p className="font-bold text-lg">Professeur Jean Moussavou</p>
+            <p className="text-white/80">Président du Comité Scientifique - CIL 2026</p>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Prêt à participer au <span className="text-[#00D9C5]">CIL 2026</span> ?
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
+            Prêt à participer au <span className="text-[#4169E1]">CIL 2026</span> ?
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/appel-communications" className="btn-primary">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link 
+              href="/appel-communications" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-[#4169E1] text-white font-bold rounded-full hover:bg-[#3154b3] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+            >
               Consulter l&apos;appel à communications
             </Link>
-            <Link href="/inscription" className="btn-secondary">
+            <Link 
+              href="/inscription" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#4169E1] font-bold rounded-full border-2 border-[#4169E1] hover:bg-blue-50 transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
+            >
               S&apos;inscrire au colloque
             </Link>
           </div>
