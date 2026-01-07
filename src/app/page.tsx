@@ -112,7 +112,10 @@ export default function Home() {
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Titre principal - Colloque International de Libreville */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 drop-shadow-md uppercase tracking-wide"
+            style={{ fontFamily: "'Arial Black', 'Arial Bold', Gadget, sans-serif", fontWeight: 900 }}
+          >
             Colloque International de Libreville
           </h1>
 
