@@ -7,43 +7,43 @@ const countries = {
     name: "Afrique",
     color: "#22c55e",
     countries: [
-      { name: "Gabon", x: 51, y: 52.5, flag: "🇬🇦" },
-      { name: "Cameroun", x: 52, y: 50, flag: "🇨🇲" },
-      { name: "Côte d'Ivoire", x: 46, y: 50, flag: "🇨🇮" },
-      { name: "Sénégal", x: 43, y: 46, flag: "🇸🇳" },
-      { name: "Burkina Faso", x: 47.5, y: 47, flag: "🇧🇫" },
-      { name: "Bénin", x: 49.5, y: 49, flag: "🇧🇯" },
-      { name: "Togo", x: 48.5, y: 49.5, flag: "🇹🇬" },
-      { name: "Mali", x: 45.5, y: 45, flag: "🇲🇱" },
-      { name: "Niger", x: 50, y: 46, flag: "🇳🇪" },
-      { name: "RDC", x: 55, y: 54, flag: "🇨🇩" },
-      { name: "Congo", x: 53, y: 53, flag: "🇨🇬" },
-      { name: "Maroc", x: 45, y: 40, flag: "🇲🇦" },
-      { name: "Tunisie", x: 50, y: 39, flag: "🇹🇳" },
+      { name: "Gabon", x: 51, y: 35, flag: "🇬🇦" },
+      { name: "Cameroun", x: 52, y: 33, flag: "🇨🇲" },
+      { name: "Côte d'Ivoire", x: 46, y: 33, flag: "🇨🇮" },
+      { name: "Sénégal", x: 43, y: 30, flag: "🇸🇳" },
+      { name: "Burkina Faso", x: 47.5, y: 30, flag: "🇧🇫" },
+      { name: "Bénin", x: 49.5, y: 32, flag: "🇧🇯" },
+      { name: "Togo", x: 48.5, y: 32.5, flag: "🇹🇬" },
+      { name: "Mali", x: 45.5, y: 28, flag: "🇲🇱" },
+      { name: "Niger", x: 50, y: 29, flag: "🇳🇪" },
+      { name: "RDC", x: 55, y: 37, flag: "🇨🇩" },
+      { name: "Congo", x: 53, y: 36, flag: "🇨🇬" },
+      { name: "Maroc", x: 45, y: 24, flag: "🇲🇦" },
+      { name: "Tunisie", x: 50, y: 23, flag: "🇹🇳" },
     ]
   },
   europe: {
     name: "Europe",
     color: "#3b82f6",
     countries: [
-      { name: "France", x: 49, y: 35, flag: "🇫🇷" },
-      { name: "Belgique", x: 50, y: 33, flag: "🇧🇪" },
-      { name: "Suisse", x: 51, y: 35, flag: "🇨🇭" },
-      { name: "Allemagne", x: 52, y: 33, flag: "🇩🇪" },
+      { name: "France", x: 49, y: 19, flag: "🇫🇷" },
+      { name: "Belgique", x: 50, y: 17, flag: "🇧🇪" },
+      { name: "Suisse", x: 51, y: 19, flag: "🇨🇭" },
+      { name: "Allemagne", x: 52, y: 17, flag: "🇩🇪" },
     ]
   },
   amerique: {
     name: "Amérique",
     color: "#ef4444",
     countries: [
-      { name: "Canada", x: 22, y: 36, flag: "🇨🇦" },
-      { name: "États-Unis", x: 20, y: 40, flag: "🇺🇸" },
+      { name: "Canada", x: 22, y: 20, flag: "🇨🇦" },
+      { name: "États-Unis", x: 20, y: 24, flag: "🇺🇸" },
     ]
   }
 };
 
 // Position de Libreville (Gabon)
-const libreville = { x: 51, y: 52.5 };
+const libreville = { x: 51, y: 35 };
 
 type ContinentKey = 'afrique' | 'europe' | 'amerique';
 
