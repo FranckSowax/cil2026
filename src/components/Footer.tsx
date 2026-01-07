@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Mail, MapPin, Send, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Mail, MapPin, Send, Twitter, Linkedin, Facebook, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { subscribeNewsletter } from '@/lib/api';
 
 const quickLinks = [
   { name: 'Accueil', href: '/' },
@@ -27,6 +28,38 @@ const socialLinks = [
 
 export default function Footer() {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) {
+      setStatus('error');
+      setMessage('Veuillez entrer une adresse email valide.');
+      return;
+    }
+
+    setIsLoading(true);
+    setStatus('idle');
+
+    try {
+      const result = await subscribeNewsletter(email);
+      setStatus('success');
+      setMessage(result.message);
+      setEmail('');
+    } catch (error) {
+      setStatus('error');
+      setMessage('Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+      setIsLoading(false);
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setStatus('idle');
+        setMessage('');
+      }, 5000);
+    }
+  };
 
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/10">
@@ -98,18 +131,41 @@ export default function Footer() {
             <p className="text-[#B0B0B0] text-sm mb-4">
               Recevez les dernières actualités du colloque.
             </p>
-            <div className="flex">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Votre email"
-                className="flex-1 px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-l-full text-white text-sm focus:outline-none focus:border-[#4169E1]"
-              />
-              <button className="px-4 py-3 bg-[#4169E1] text-white rounded-r-full hover:brightness-110 transition-all">
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+              <div className="flex">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Votre email"
+                  disabled={isLoading}
+                  className="flex-1 px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-l-full text-white text-sm focus:outline-none focus:border-[#4169E1] disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="px-4 py-3 bg-[#4169E1] text-white rounded-r-full hover:brightness-110 transition-all disabled:opacity-50"
+                >
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+              {status !== 'idle' && (
+                <div className={`flex items-center gap-2 text-xs ${
+                  status === 'success' ? 'text-green-400' : 'text-red-400'
+                }`}>
+                  {status === 'success' ? (
+                    <CheckCircle className="w-3 h-3" />
+                  ) : (
+                    <AlertCircle className="w-3 h-3" />
+                  )}
+                  <span>{message}</span>
+                </div>
+              )}
+            </form>
 
             {/* Contact */}
             <div className="mt-6 space-y-2">

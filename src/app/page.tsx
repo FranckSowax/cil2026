@@ -97,8 +97,31 @@ const features = [
 export default function Home() {
   return (
     <div className="bg-[#0A0A0A]">
-      {/* Hero Section - Full viewport */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Countdown Section - Centré au-dessus du hero */}
+      <section className="relative pt-24 sm:pt-28 pb-8 sm:pb-12 overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-[#4169E1]/15 rounded-full filter blur-[100px] sm:blur-[150px]"></div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Titre du countdown */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-3 sm:mb-4">
+            Début du Colloque dans
+          </h2>
+
+          {/* Date en blanc - plus grande */}
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6 sm:mb-8">
+            23 - 27 Mars 2026
+          </p>
+
+          {/* Countdown component */}
+          <div className="max-w-lg mx-auto">
+            <Countdown targetDate={eventDate} />
+          </div>
+        </div>
+      </section>
+
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden">
         {/* Mesh gradient background */}
         <div className="absolute inset-0 mesh-gradient"></div>
         <div className="absolute inset-0">
@@ -106,87 +129,61 @@ export default function Home() {
           <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-48 sm:w-96 h-48 sm:h-96 bg-[#D4AF37]/15 rounded-full filter blur-[80px] sm:blur-[120px]"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-12 sm:pb-20">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Text content */}
-            <div className="text-center lg:text-left">
-              {/* En-tête officiel */}
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-[#4169E1] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-wider mb-2">
-                  Colloque International de Libreville
-                </h2>
-                <p className="text-white/70 text-xs sm:text-sm italic mb-1">
-                  « Regards croisés sur le développement en Afrique »
-                </p>
-                <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full">
-                  <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#4169E1] rounded-full mr-2 animate-pulse"></span>
-                  <span className="text-xs sm:text-sm text-[#B0B0B0]">12è édition • CIL2026</span>
-                </div>
-              </div>
-
-              {/* Titre du thème avec typographie spécifique */}
-              <div className="mb-4 sm:mb-6">
-                <h1 className="theme-title-main text-[#4169E1] mb-2">
-                  « Intelligence artificielle et dynamiques des Organisations »
-                </h1>
-                <p className="theme-title-sub text-[#4169E1]">
-                  enjeux, défis et perspectives
-                </p>
-              </div>
-
-              {/* Présidence */}
-              <p className="text-xs sm:text-sm text-[#B0B0B0]/70 mb-6 sm:mb-8">
-                Sous la présidence du <span className="text-white font-medium">Professeur Jean MOUSSAVOU</span>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* En-tête officiel */}
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-[#4169E1] text-base sm:text-lg md:text-xl font-semibold uppercase tracking-wider mb-2">
+                Colloque International de Libreville
+              </h2>
+              <p className="text-white/70 text-sm sm:text-base italic mb-2">
+                « Regards croisés sur le développement en Afrique »
               </p>
-
-              {/* Date & Location */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4 mb-6 sm:mb-10">
-                <div className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full">
-                  <Calendar className="w-3 sm:w-4 h-3 sm:h-4 text-[#4169E1]" />
-                  <span className="text-white text-xs sm:text-sm">23 - 27 Mars 2026</span>
-                </div>
-                <div className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full">
-                  <MapPin className="w-3 sm:w-4 h-3 sm:h-4 text-[#4169E1]" />
-                  <span className="text-white text-xs sm:text-sm">Libreville, Gabon</span>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
-                <Link
-                  href="/inscription"
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#4169E1] text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 animate-pulse-glow text-sm sm:text-base"
-                >
-                  S&apos;inscrire maintenant
-                  <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
-                </Link>
-                <Link
-                  href="/appel-communications"
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#4169E1]/30 text-[#4169E1] font-semibold rounded-full hover:bg-[#4169E1]/10 transition-all duration-300 text-sm sm:text-base"
-                >
-                  Soumettre un papier
-                  <ChevronRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
-                </Link>
+              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full">
+                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#4169E1] rounded-full mr-2 animate-pulse"></span>
+                <span className="text-xs sm:text-sm text-[#B0B0B0]">12è édition • CIL2026</span>
               </div>
             </div>
 
-            {/* Right: Countdown */}
-            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 max-w-md w-full">
-                <p className="text-center text-[#B0B0B0] text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest mb-4 sm:mb-6">
-                  Début du colloque dans
-                </p>
-                <Countdown targetDate={eventDate} />
-                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10">
-                  <p className="text-center text-[#B0B0B0] text-xs sm:text-sm mb-3 sm:mb-4">Inscriptions ouvertes</p>
-                  <Link
-                    href="/inscription"
-                    className="block w-full py-2.5 sm:py-3 text-center bg-[#4169E1] text-white font-semibold rounded-full hover:scale-105 transition-all text-sm sm:text-base"
-                  >
-                    Réserver ma place
-                  </Link>
-                </div>
+            {/* Titre du thème avec typographie plus grande */}
+            <div className="mb-4 sm:mb-6">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#4169E1] mb-2 leading-tight">
+                « Intelligence artificielle et dynamiques des Organisations »
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-[#4169E1]">
+                enjeux, défis et perspectives
+              </p>
+            </div>
+
+            {/* Présidence */}
+            <p className="text-sm sm:text-base text-[#B0B0B0]/70 mb-6 sm:mb-8">
+              Sous la présidence du <span className="text-white font-medium">Professeur Jean MOUSSAVOU</span>
+            </p>
+
+            {/* Location */}
+            <div className="flex justify-center mb-8 sm:mb-10">
+              <div className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-full">
+                <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-[#4169E1]" />
+                <span className="text-white text-sm sm:text-base font-medium">Libreville, Gabon</span>
               </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+              <Link
+                href="/inscription"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#4169E1] text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 animate-pulse-glow text-sm sm:text-base"
+              >
+                S&apos;inscrire maintenant
+                <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
+              <Link
+                href="/appel-communications"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#4169E1]/30 text-[#4169E1] font-semibold rounded-full hover:bg-[#4169E1]/10 transition-all duration-300 text-sm sm:text-base"
+              >
+                Soumettre un papier
+                <ChevronRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
+              </Link>
             </div>
           </div>
         </div>

@@ -2,49 +2,97 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Upload, FileText, CheckCircle, AlertCircle, ArrowRight, Download } from 'lucide-react';
-
-const documentTypes = [
-  { value: 'resume', label: 'Résumé étendu (2-3 pages)' },
-  { value: 'short', label: 'Communication courte (5-8 pages)' },
-  { value: 'full', label: 'Communication complète (15-20 pages)' },
-];
+import { Upload, FileText, CheckCircle, AlertCircle, ArrowRight, Download, User, BookOpen, Loader2 } from 'lucide-react';
+import { createSoumission, uploadFile, type SoumissionData } from '@/lib/api';
 
 const thematicAxes = [
-  { value: 'axe1', label: 'Axe 1 : IA et Transformation Organisationnelle' },
-  { value: 'axe2', label: 'Axe 2 : IA et Gestion des Ressources Humaines' },
-  { value: 'axe3', label: 'Axe 3 : IA et Prise de Décision' },
-  { value: 'axe4', label: 'Axe 4 : IA et Innovation en Afrique' },
+  { value: 'Axe 1 : IA et Transformation Organisationnelle', label: 'Axe 1 : IA et Transformation Organisationnelle' },
+  { value: 'Axe 2 : IA et Gestion des Ressources Humaines', label: 'Axe 2 : IA et Gestion des Ressources Humaines' },
+  { value: 'Axe 3 : IA et Prise de Décision', label: 'Axe 3 : IA et Prise de Décision' },
+  { value: 'Axe 4 : IA et Innovation en Afrique', label: 'Axe 4 : IA et Innovation en Afrique' },
+];
+
+const civilites = ['M.', 'Mme', 'Dr', 'Pr'] as const;
+
+const paysAfricains = [
+  'Gabon', 'Cameroun', 'Côte d\'Ivoire', 'Sénégal', 'Congo', 'RDC',
+  'Bénin', 'Togo', 'Burkina Faso', 'Mali', 'Niger', 'Guinée',
+  'Tchad', 'Centrafrique', 'Mauritanie', 'Madagascar', 'Maroc',
+  'Tunisie', 'Algérie', 'Nigeria', 'Ghana', 'Kenya', 'Afrique du Sud',
+  'France', 'Belgique', 'Suisse', 'Canada', 'Autre'
 ];
 
 export default function SoumettreePage() {
   const [formData, setFormData] = useState({
-    authorName: '',
-    coAuthors: '',
+    civilite: 'Dr' as typeof civilites[number],
+    nom: '',
+    prenom: '',
     email: '',
-    phone: '',
+    telephone: '',
     institution: '',
-    country: '',
-    title: '',
-    thematicAxis: '',
-    documentType: '',
-    keywords: '',
-    abstract: '',
+    pays: 'Gabon',
+    coAuteurs: '',
+    titre: '',
+    axeThematique: '',
+    motsCles: '',
+    resume: '',
   });
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulation d'envoi
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      // Upload du fichier si présent
+      let fichierUrl: string | null = null;
+      if (file) {
+        fichierUrl = await uploadFile(file, 'soumissions');
+      }
+
+      // Préparer les mots-clés comme tableau
+      const motsClesArray = formData.motsCles
+        .split(',')
+        .map(m => m.trim())
+        .filter(m => m.length > 0);
+
+      // Préparer les co-auteurs comme JSON
+      const coAuteursArray = formData.coAuteurs
+        .split(',')
+        .map(c => c.trim())
+        .filter(c => c.length > 0)
+        .map(c => ({ nom: c }));
+
+      const soumissionData: SoumissionData = {
+        auteur_civilite: formData.civilite,
+        auteur_nom: formData.nom,
+        auteur_prenom: formData.prenom,
+        auteur_email: formData.email,
+        auteur_telephone: formData.telephone,
+        auteur_institution: formData.institution,
+        auteur_pays: formData.pays,
+        co_auteurs: coAuteursArray.length > 0 ? coAuteursArray : null,
+        titre: formData.titre,
+        axe_thematique: formData.axeThematique,
+        mots_cles: motsClesArray,
+        resume: formData.resume,
+        fichier_url: fichierUrl,
+        statut: 'soumise',
+      };
+
+      await createSoumission(soumissionData);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Erreur soumission:', err);
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -68,7 +116,7 @@ export default function SoumettreePage() {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const droppedFile = e.dataTransfer.files[0];
       if (isValidFile(droppedFile)) {
@@ -94,133 +142,167 @@ export default function SoumettreePage() {
 
   if (submitted) {
     return (
-      <section className="py-20 bg-gray-50 min-h-screen">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-600" />
+      <div className="bg-[#0A0A0A] min-h-screen">
+        <section className="relative pt-24 sm:pt-32 pb-20 overflow-hidden">
+          <div className="absolute inset-0 mesh-gradient"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#4169E1]/20 rounded-full filter blur-[150px]"></div>
+          <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-[#4169E1] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+              <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-[#006400] mb-4">Soumission enregistrée !</h2>
-            <p className="text-gray-600 mb-6">
-              Votre communication a été soumise avec succès. Un email de confirmation a été envoyé à <strong>{formData.email}</strong>.
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+              Soumission <span className="text-[#4169E1]">Enregistrée !</span>
+            </h1>
+            <p className="text-lg text-[#B0B0B0] mb-8">
+              Votre communication a été soumise avec succès. Un email de confirmation a été envoyé à <strong className="text-white">{formData.email}</strong>
             </p>
-            <div className="bg-gray-50 rounded-xl p-6 mb-6 text-left">
-              <h3 className="font-bold text-[#006400] mb-4">Récapitulatif</h3>
+            <div className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-6 border border-white/10 mb-8 text-left">
+              <h3 className="text-white font-bold mb-4">Récapitulatif</h3>
               <div className="space-y-2 text-sm">
-                <p><span className="text-gray-500">Titre :</span> {formData.title}</p>
-                <p><span className="text-gray-500">Auteur :</span> {formData.authorName}</p>
-                <p><span className="text-gray-500">Axe thématique :</span> {thematicAxes.find(a => a.value === formData.thematicAxis)?.label}</p>
-                <p><span className="text-gray-500">Type de document :</span> {documentTypes.find(d => d.value === formData.documentType)?.label}</p>
-                <p><span className="text-gray-500">Fichier :</span> {file?.name}</p>
+                <p><span className="text-[#B0B0B0]">Titre :</span> <span className="text-white">{formData.titre}</span></p>
+                <p><span className="text-[#B0B0B0]">Auteur :</span> <span className="text-white">{formData.civilite} {formData.prenom} {formData.nom}</span></p>
+                <p><span className="text-[#B0B0B0]">Axe thématique :</span> <span className="text-white">{formData.axeThematique}</span></p>
+                {file && <p><span className="text-[#B0B0B0]">Fichier :</span> <span className="text-white">{file.name}</span></p>}
               </div>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-              <p className="text-blue-800 text-sm">
-                <strong>Prochaines étapes :</strong> Votre soumission sera évaluée par le comité scientifique. 
+            <div className="bg-[#4169E1]/10 border border-[#4169E1]/30 rounded-xl p-4 mb-8">
+              <p className="text-[#B0B0B0] text-sm">
+                <strong className="text-white">Prochaines étapes :</strong> Votre soumission sera évaluée par le comité scientifique.
                 Vous recevrez une notification d&apos;acceptation avant le 15 février 2026.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/" className="btn-primary">
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center px-6 py-3 bg-[#4169E1] text-white font-bold rounded-full hover:scale-105 transition-all"
+              >
                 Retour à l&apos;accueil
               </Link>
-              <Link href="/inscription" className="btn-secondary">
+              <Link
+                href="/inscription"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white/5 border border-white/10 text-white font-bold rounded-full hover:bg-white/10 transition-all"
+              >
                 S&apos;inscrire au colloque
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="bg-[#0A0A0A] min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#006400] to-[#004d00] text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Soumettre une Communication
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
+              <BookOpen className="w-3 sm:w-4 h-3 sm:h-4 text-[#4169E1] mr-2" />
+              <span className="text-xs sm:text-sm text-[#B0B0B0]">Date limite : 15 janvier 2026</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
+              Soumettre une <span className="text-[#4169E1]">Communication</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
-              Partagez vos travaux de recherche sur l&apos;Intelligence Artificielle 
+            <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto mb-8">
+              Partagez vos travaux de recherche sur l&apos;Intelligence Artificielle
               et les Dynamiques des Organisations
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a 
-                href="/documents/template-cil2026.docx" 
-                download
-                className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-lg hover:bg-white/20 transition-all"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Télécharger le template
-              </a>
-            </div>
+            <a
+              href="/documents/template-cil2026.docx"
+              download
+              className="inline-flex items-center px-6 py-3 bg-white/5 border border-white/10 text-white font-medium rounded-full hover:bg-white/10 transition-all"
+            >
+              <Download className="w-5 h-5 mr-2 text-[#4169E1]" />
+              Télécharger le template
+            </a>
           </div>
         </div>
       </section>
 
       {/* Rappel des consignes */}
-      <section className="py-8 bg-yellow-50 border-b border-yellow-200">
+      <section className="py-4 bg-[#D4AF37]/10 border-y border-[#D4AF37]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start space-x-3">
-            <AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0" />
-            <div>
-              <p className="text-yellow-800 font-medium">Rappel important</p>
-              <p className="text-yellow-700 text-sm">
-                Date limite de soumission : <strong>15 janvier 2026</strong>. 
-                Formats acceptés : PDF ou Word. Taille maximale : 10 Mo.
-                <Link href="/appel-communications" className="ml-2 text-[#006400] hover:underline">
-                  Voir les consignes complètes →
-                </Link>
-              </p>
-            </div>
+          <div className="flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0" />
+            <p className="text-[#D4AF37] text-sm">
+              <strong>Rappel important :</strong> Formats acceptés : PDF ou Word. Taille maximale : 10 Mo.
+              <Link href="/appel-communications" className="ml-2 text-[#4169E1] hover:underline">
+                Voir les consignes complètes
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
       {/* Formulaire */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-[#111111]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
+          {error && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 text-red-400">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Informations sur l'auteur */}
-            <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b flex items-center">
-                <span className="w-8 h-8 bg-[#006400] text-white rounded-full flex items-center justify-center text-sm mr-3">1</span>
+            <div className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#4169E1] rounded-full flex items-center justify-center text-sm text-white">1</div>
+                <User className="w-5 h-5 text-[#4169E1]" />
                 Informations sur l&apos;auteur
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Nom complet de l&apos;auteur principal <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Civilité <span className="text-[#4169E1]">*</span>
                   </label>
-                  <input
-                    type="text"
-                    name="authorName"
-                    value={formData.authorName}
+                  <select
+                    name="civilite"
+                    value={formData.civilite}
                     onChange={handleChange}
                     required
-                    placeholder="Prénom NOM"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
-                  />
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
+                  >
+                    {civilites.map(c => (
+                      <option key={c} value={c} className="bg-[#1A1A1A]">{c}</option>
+                    ))}
+                  </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Co-auteurs (si applicable)
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Nom <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="text"
-                    name="coAuthors"
-                    value={formData.coAuthors}
+                    name="nom"
+                    value={formData.nom}
                     onChange={handleChange}
-                    placeholder="Prénom NOM, Prénom NOM..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    required
+                    placeholder="Votre nom"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Prénom <span className="text-[#4169E1]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="prenom"
+                    value={formData.prenom}
+                    onChange={handleChange}
+                    required
+                    placeholder="Votre prénom"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Email <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="email"
@@ -228,24 +310,27 @@ export default function SoumettreePage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    placeholder="votre@email.com"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Téléphone
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Téléphone <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
+                    name="telephone"
+                    value={formData.telephone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    required
+                    placeholder="+241 XX XX XX XX"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Institution / Organisation <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Institution <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="text"
@@ -253,120 +338,124 @@ export default function SoumettreePage() {
                     value={formData.institution}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    placeholder="Université, laboratoire..."
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Pays <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Pays <span className="text-[#4169E1]">*</span>
+                  </label>
+                  <select
+                    name="pays"
+                    value={formData.pays}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
+                  >
+                    {paysAfricains.map(pays => (
+                      <option key={pays} value={pays} className="bg-[#1A1A1A]">{pays}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Co-auteurs (séparés par des virgules)
                   </label>
                   <input
                     type="text"
-                    name="country"
-                    value={formData.country}
+                    name="coAuteurs"
+                    value={formData.coAuteurs}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    placeholder="Dr Jean Dupont, Pr Marie Martin..."
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
               </div>
             </div>
 
             {/* Informations sur la communication */}
-            <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b flex items-center">
-                <span className="w-8 h-8 bg-[#006400] text-white rounded-full flex items-center justify-center text-sm mr-3">2</span>
+            <div className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#4169E1] rounded-full flex items-center justify-center text-sm text-white">2</div>
+                <BookOpen className="w-5 h-5 text-[#4169E1]" />
                 Informations sur la communication
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Titre de la communication <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Titre de la communication <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="text"
-                    name="title"
-                    value={formData.title}
+                    name="titre"
+                    value={formData.titre}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    placeholder="Titre de votre communication"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Axe thématique <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      name="thematicAxis"
-                      value={formData.thematicAxis}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
-                    >
-                      <option value="">-- Sélectionnez un axe --</option>
-                      {thematicAxes.map((axis) => (
-                        <option key={axis.value} value={axis.value}>{axis.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Type de document <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      name="documentType"
-                      value={formData.documentType}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
-                    >
-                      <option value="">-- Sélectionnez un type --</option>
-                      {documentTypes.map((type) => (
-                        <option key={type.value} value={type.value}>{type.label}</option>
-                      ))}
-                    </select>
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Axe thématique <span className="text-[#4169E1]">*</span>
+                  </label>
+                  <select
+                    name="axeThematique"
+                    value={formData.axeThematique}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
+                  >
+                    <option value="" className="bg-[#1A1A1A]">-- Sélectionnez un axe --</option>
+                    {thematicAxes.map((axis) => (
+                      <option key={axis.value} value={axis.value} className="bg-[#1A1A1A]">{axis.label}</option>
+                    ))}
+                  </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Mots-clés (5 maximum, séparés par des virgules) <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Mots-clés (5 maximum, séparés par des virgules) <span className="text-[#4169E1]">*</span>
                   </label>
                   <input
                     type="text"
-                    name="keywords"
-                    value={formData.keywords}
+                    name="motsCles"
+                    value={formData.motsCles}
                     onChange={handleChange}
                     required
                     placeholder="intelligence artificielle, organisation, transformation digitale..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Résumé (150-200 mots) <span className="text-red-500">*</span>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Résumé (150-200 mots, max 3000 caractères) <span className="text-[#4169E1]">*</span>
                   </label>
                   <textarea
-                    name="abstract"
-                    value={formData.abstract}
+                    name="resume"
+                    value={formData.resume}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent resize-none"
+                    maxLength={3000}
+                    rows={6}
+                    placeholder="Résumé de votre communication..."
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#4169E1] transition-colors text-sm resize-none"
                   ></textarea>
+                  <p className="text-xs text-[#B0B0B0] mt-1">{formData.resume.length}/3000 caractères</p>
                 </div>
               </div>
             </div>
 
             {/* Upload du fichier */}
-            <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b flex items-center">
-                <span className="w-8 h-8 bg-[#006400] text-white rounded-full flex items-center justify-center text-sm mr-3">3</span>
+            <div className="bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/10">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#4169E1] rounded-full flex items-center justify-center text-sm text-white">3</div>
+                <Upload className="w-5 h-5 text-[#4169E1]" />
                 Téléchargement du fichier
               </h3>
               <div
                 className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
-                  dragActive ? 'border-[#006400] bg-green-50' : 'border-gray-300 hover:border-gray-400'
+                  dragActive ? 'border-[#4169E1] bg-[#4169E1]/10' : 'border-white/20 hover:border-white/30'
                 }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -374,27 +463,27 @@ export default function SoumettreePage() {
                 onDrop={handleDrop}
               >
                 {file ? (
-                  <div className="flex items-center justify-center space-x-3">
-                    <FileText className="w-10 h-10 text-[#006400]" />
+                  <div className="flex items-center justify-center gap-4">
+                    <FileText className="w-10 h-10 text-[#4169E1]" />
                     <div className="text-left">
-                      <p className="font-medium text-[#006400]">{file.name}</p>
-                      <p className="text-sm text-gray-500">{(file.size / 1024 / 1024).toFixed(2)} Mo</p>
+                      <p className="font-medium text-white">{file.name}</p>
+                      <p className="text-sm text-[#B0B0B0]">{(file.size / 1024 / 1024).toFixed(2)} Mo</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setFile(null)}
-                      className="text-red-500 hover:text-red-700 text-sm"
+                      className="text-red-400 hover:text-red-300 text-sm"
                     >
                       Supprimer
                     </button>
                   </div>
                 ) : (
                   <>
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-2">
+                    <Upload className="w-12 h-12 text-[#B0B0B0] mx-auto mb-4" />
+                    <p className="text-[#B0B0B0] mb-2">
                       Glissez-déposez votre fichier ici ou
                     </p>
-                    <label className="inline-flex items-center px-4 py-2 bg-[#006400] text-white rounded-lg cursor-pointer hover:bg-[#004d00] transition-colors">
+                    <label className="inline-flex items-center px-4 py-2 bg-[#4169E1] text-white rounded-full cursor-pointer hover:scale-105 transition-all">
                       <span>Parcourir</span>
                       <input
                         type="file"
@@ -403,7 +492,7 @@ export default function SoumettreePage() {
                         className="hidden"
                       />
                     </label>
-                    <p className="text-sm text-gray-500 mt-3">
+                    <p className="text-sm text-[#B0B0B0] mt-3">
                       Formats acceptés : PDF, DOC, DOCX (max. 10 Mo)
                     </p>
                   </>
@@ -414,31 +503,29 @@ export default function SoumettreePage() {
             {/* Bouton de soumission */}
             <button
               type="submit"
-              disabled={isSubmitting || !file}
-              className={`w-full py-4 rounded-lg font-bold text-white transition-all flex items-center justify-center ${
-                isSubmitting || !file
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-[#006400] hover:bg-[#004d00]'
+              disabled={isSubmitting}
+              className={`w-full py-4 rounded-full font-bold text-white transition-all flex items-center justify-center gap-2 ${
+                isSubmitting
+                  ? 'bg-white/20 cursor-not-allowed'
+                  : 'bg-[#4169E1] hover:scale-105'
               }`}
+              style={!isSubmitting ? { boxShadow: '0 0 30px rgba(65, 105, 225, 0.3)' } : {}}
             >
               {isSubmitting ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
+                  <Loader2 className="w-5 h-5 animate-spin" />
                   Envoi en cours...
                 </>
               ) : (
                 <>
                   Soumettre ma communication
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <ArrowRight className="w-5 h-5" />
                 </>
               )}
             </button>
           </form>
         </div>
       </section>
-    </>
+    </div>
   );
 }
