@@ -104,6 +104,16 @@ export default function CarteParticipants() {
         </button>
       </div>
 
+      {/* Map Image */}
+      <div className="relative rounded-2xl overflow-hidden mb-8">
+        <img
+          src="/images/fond-carte.jpg"
+          alt="Carte mondiale des participants"
+          className="w-full h-auto object-cover rounded-2xl"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent"></div>
+      </div>
+
       {/* Country Lists */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Afrique */}
