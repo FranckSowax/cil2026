@@ -1,36 +1,41 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Check, CreditCard, Smartphone, Building, AlertCircle, ArrowRight, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
+// Tarifs par ordre décroissant (du plus élevé au plus bas)
 const pricingCategories = [
   {
     category: "Praticiens et décideurs",
     price: 150000,
-    features: ["Accès à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"]
+    features: ["Accès VIP à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation", "Networking privilégié"],
+    highlight: true,
   },
   {
     category: "Enseignants-chercheurs",
     price: 70000,
-    features: ["Accès à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"]
+    features: ["Accès à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation", "12 ECTS"],
+    highlight: false,
   },
   {
     category: "Doctorants et membres APCIL",
     price: 50000,
-    features: ["Accès à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"]
+    features: ["Accès à toutes les sessions", "Accueil à l'aéroport", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"],
+    highlight: false,
   },
   {
     category: "Master professionnel / recherche",
     price: 40000,
-    features: ["Accès à toutes les sessions", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"]
+    features: ["Accès à toutes les sessions", "Pauses café et déjeuners", "Soirée de gala", "Attestations de participation"],
+    highlight: false,
   },
   {
     category: "Étudiants",
     price: 10000,
-    features: ["Accès à toutes les sessions", "Pauses café", "Attestation de participation"]
+    features: ["Accès à toutes les sessions", "Pauses café", "Attestation de participation"],
+    highlight: false,
   },
 ];
 
@@ -61,8 +66,7 @@ const paymentMethods = [
 ];
 
 export default function InscriptionPage() {
-  const router = useRouter();
-  const { addItem, items, getItemCount, clearCart } = useCart();
+  const { addItem, getItemCount, clearCart } = useCart();
   const cartItemCount = getItemCount();
 
   const [formData, setFormData] = useState({
@@ -96,9 +100,8 @@ export default function InscriptionPage() {
   };
 
   const handleAddToCart = (pricing: { category: string; price: number }) => {
-    // Clear existing items first (only one registration type at a time)
     clearCart();
-    
+
     addItem({
       id: pricing.category.toLowerCase().replace(/\s+/g, '-'),
       name: `Inscription CIL 2026`,
@@ -110,10 +113,9 @@ export default function InscriptionPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulation d'envoi
+
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setSubmitted(true);
   };
@@ -128,36 +130,36 @@ export default function InscriptionPage() {
 
   if (submitted) {
     return (
-      <section className="py-20 bg-gray-50 min-h-screen">
+      <section className="py-20 bg-[#0A0A0A] min-h-screen pt-32">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Check className="w-10 h-10 text-green-600" />
+          <div className="bg-[#1A1A1A] rounded-2xl p-8 border border-white/10">
+            <div className="w-20 h-20 bg-[#4169E1]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Check className="w-10 h-10 text-[#4169E1]" />
             </div>
-            <h2 className="text-2xl font-bold text-[#006400] mb-4">Inscription enregistrée !</h2>
-            <p className="text-gray-600 mb-6">
-              Votre demande d&apos;inscription a été enregistrée avec succès. 
-              Un email de confirmation avec les instructions de paiement vous a été envoyé à <strong>{formData.email}</strong>.
+            <h2 className="text-2xl font-bold text-white mb-4">Inscription enregistrée !</h2>
+            <p className="text-[#B0B0B0] mb-6">
+              Votre demande d&apos;inscription a été enregistrée avec succès.
+              Un email de confirmation avec les instructions de paiement vous a été envoyé à <strong className="text-white">{formData.email}</strong>.
             </p>
-            <div className="bg-gray-50 rounded-xl p-6 mb-6">
-              <h3 className="font-bold text-[#006400] mb-4">Récapitulatif</h3>
-              <div className="space-y-2 text-left">
-                <p><span className="text-gray-500">Nom :</span> {formData.lastName} {formData.firstName}</p>
-                <p><span className="text-gray-500">Catégorie :</span> {formData.category}</p>
-                <p><span className="text-gray-500">Montant total :</span> <strong className="text-[#006400]">{formatPrice(calculateTotal())}</strong></p>
-                <p><span className="text-gray-500">Mode de paiement :</span> {paymentMethods.find(m => m.id === formData.paymentMethod)?.name}</p>
+            <div className="bg-white/5 rounded-xl p-6 mb-6 border border-white/10">
+              <h3 className="font-bold text-[#4169E1] mb-4">Récapitulatif</h3>
+              <div className="space-y-2 text-left text-[#B0B0B0]">
+                <p><span className="text-white/60">Nom :</span> <span className="text-white">{formData.lastName} {formData.firstName}</span></p>
+                <p><span className="text-white/60">Catégorie :</span> <span className="text-white">{formData.category}</span></p>
+                <p><span className="text-white/60">Montant total :</span> <strong className="text-[#4169E1]">{formatPrice(calculateTotal())} FCFA</strong></p>
+                <p><span className="text-white/60">Mode de paiement :</span> <span className="text-white">{paymentMethods.find(m => m.id === formData.paymentMethod)?.name}</span></p>
               </div>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+            <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-lg p-4 mb-6">
               <div className="flex items-start space-x-3">
-                <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                <p className="text-yellow-800 text-sm text-left">
-                  Votre inscription sera validée après réception du paiement. 
+                <AlertCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                <p className="text-[#D4AF37] text-sm text-left">
+                  Votre inscription sera validée après réception du paiement.
                   Veuillez effectuer le paiement dans les 7 jours suivant votre inscription.
                 </p>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => window.location.href = '/'}
               className="btn-primary"
             >
@@ -174,14 +176,15 @@ export default function InscriptionPage() {
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-20 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
+              <span className="w-2 h-2 bg-[#4169E1] rounded-full mr-2 animate-pulse"></span>
               <span className="text-xs sm:text-sm text-[#B0B0B0]">Inscriptions ouvertes</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-              Inscription & <span className="text-[#00D9C5]">Tarifs</span>
+              Inscription & <span className="text-[#4169E1]">Tarifs</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-[#B0B0B0] max-w-3xl mx-auto px-2">
               Inscrivez-vous au 12ème Colloque International de Libreville
@@ -190,11 +193,11 @@ export default function InscriptionPage() {
         </div>
       </section>
 
-      {/* Tarifs */}
+      {/* Tarifs - Ordre décroissant */}
       <section id="tarifs" className="py-12 sm:py-16 md:py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="section-title">Grille Tarifaire</h2>
+            <h2 className="section-title">Grille <span className="text-[#4169E1]">Tarifaire</span></h2>
             <p className="text-[#B0B0B0] text-sm sm:text-base">
               Choisissez la formule adaptée à votre profil
             </p>
@@ -202,21 +205,23 @@ export default function InscriptionPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8 sm:mb-12">
             {pricingCategories.map((pricing, index) => (
-              <div 
+              <div
                 key={pricing.category}
                 className={`relative bg-[#1A1A1A] rounded-2xl sm:rounded-3xl overflow-hidden border transition-all duration-300 hover:scale-[1.02] sm:hover:scale-105 ${
-                  index === 2 ? 'border-[#00D9C5] shadow-[0_0_30px_rgba(0,217,197,0.2)] sm:shadow-[0_0_40px_rgba(0,217,197,0.2)]' : 'border-white/10 hover:border-white/20'
+                  pricing.highlight
+                    ? 'border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.2)]'
+                    : 'border-white/10 hover:border-[#4169E1]/30'
                 }`}
               >
-                {index === 2 && (
-                  <div className="absolute -top-0 left-0 right-0 bg-[#00D9C5] text-black text-center py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold">
-                    POPULAIRE
+                {pricing.highlight && (
+                  <div className="absolute -top-0 left-0 right-0 bg-[#D4AF37] text-black text-center py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold">
+                    VIP
                   </div>
                 )}
-                <div className={`p-4 sm:p-5 ${index === 2 ? 'pt-8 sm:pt-10' : ''}`}>
+                <div className={`p-4 sm:p-5 ${pricing.highlight ? 'pt-8 sm:pt-10' : ''}`}>
                   <h3 className="font-bold text-xs sm:text-sm text-white mb-2 sm:mb-3 min-h-[32px] sm:min-h-[40px]">{pricing.category}</h3>
                   <div className="mb-3 sm:mb-4">
-                    <div className="text-xl sm:text-2xl font-bold text-[#00D9C5]">
+                    <div className="text-xl sm:text-2xl font-bold text-[#4169E1]">
                       {formatPrice(pricing.price)}
                     </div>
                     <span className="text-[#B0B0B0] text-xs">FCFA</span>
@@ -224,7 +229,7 @@ export default function InscriptionPage() {
                   <ul className="space-y-1.5 sm:space-y-2 mb-4">
                     {pricing.features.map((feature) => (
                       <li key={feature} className="flex items-start space-x-2 text-[10px] sm:text-xs">
-                        <Check className="w-3 h-3 text-[#00D9C5] flex-shrink-0 mt-0.5" />
+                        <Check className="w-3 h-3 text-[#4169E1] flex-shrink-0 mt-0.5" />
                         <span className="text-[#B0B0B0]">{feature}</span>
                       </li>
                     ))}
@@ -232,9 +237,9 @@ export default function InscriptionPage() {
                   <button
                     onClick={() => handleAddToCart(pricing)}
                     className={`w-full py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 ${
-                      index === 2
-                        ? 'bg-[#00D9C5] text-black hover:brightness-110'
-                        : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                      pricing.highlight
+                        ? 'bg-[#D4AF37] text-black hover:brightness-110'
+                        : 'bg-white/5 text-white border border-white/10 hover:bg-[#4169E1] hover:border-[#4169E1]'
                     }`}
                   >
                     <ShoppingCart className="w-3 sm:w-4 h-3 sm:h-4" />
@@ -245,16 +250,16 @@ export default function InscriptionPage() {
             ))}
           </div>
 
-          {/* Options supplémentaires */}
+          {/* Option Pré-Colloque */}
           <div className="bg-[#1A1A1A] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-2xl mx-auto">
-            <h3 className="font-bold text-base sm:text-lg text-[#00D9C5] mb-3 sm:mb-4 text-center">Option Pré-Colloque</h3>
+            <h3 className="font-bold text-base sm:text-lg text-[#4169E1] mb-3 sm:mb-4 text-center">Option Pré-Colloque</h3>
             <div className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-4">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
                   <span className="font-medium text-white text-sm sm:text-base">Ateliers de formation (23-24 mars)</span>
                   <p className="text-xs sm:text-sm text-[#B0B0B0]">NVIVO et Introduction aux Équations structurelles (SEM)</p>
                 </div>
-                <span className="text-[#00D9C5] font-bold text-lg">{formatPrice(workshopPrice)} FCFA</span>
+                <span className="text-[#4169E1] font-bold text-lg">{formatPrice(workshopPrice)} FCFA</span>
               </div>
             </div>
             <p className="text-center text-xs sm:text-sm text-[#B0B0B0] mt-3 sm:mt-4">
@@ -262,13 +267,26 @@ export default function InscriptionPage() {
             </p>
           </div>
 
+          {/* Ce que comprend l'inscription */}
+          <div className="mt-8 bg-[#1A1A1A] rounded-xl p-6 border border-white/10 max-w-4xl mx-auto">
+            <h4 className="text-white font-semibold mb-4 text-center">L&apos;inscription comprend :</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+              {["Accueil à l'aéroport", "Participation aux sessions", "Pauses café", "Déjeuners", "Soirée de gala", "Attestation"].map((item) => (
+                <div key={item} className="flex flex-col items-center">
+                  <Check className="w-5 h-5 text-[#4169E1] mb-2" />
+                  <span className="text-xs text-[#B0B0B0]">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Cart CTA */}
           {cartItemCount > 0 && (
             <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50">
               <Link
                 href="/panier"
-                className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 py-3 sm:py-4 bg-[#00D9C5] text-black font-bold rounded-full shadow-2xl hover:scale-105 transition-all text-sm sm:text-base"
-                style={{ boxShadow: '0 0 40px rgba(0, 217, 197, 0.5)' }}
+                className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 py-3 sm:py-4 bg-[#4169E1] text-white font-bold rounded-full shadow-2xl hover:scale-105 transition-all text-sm sm:text-base"
+                style={{ boxShadow: '0 0 40px rgba(65, 105, 225, 0.5)' }}
               >
                 <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
                 Voir le panier ({cartItemCount})
@@ -280,22 +298,22 @@ export default function InscriptionPage() {
       </section>
 
       {/* Formulaire d'inscription */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#0A0A0A]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Formulaire d&apos;Inscription</h2>
-            <p className="text-gray-600">Remplissez le formulaire ci-dessous pour vous inscrire</p>
+            <h2 className="section-title">Formulaire d&apos;<span className="text-[#4169E1]">Inscription</span></h2>
+            <p className="text-[#B0B0B0]">Remplissez le formulaire ci-dessous pour vous inscrire</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
+          <form onSubmit={handleSubmit} className="bg-[#1A1A1A] rounded-2xl border border-white/10 p-6 sm:p-8">
             {/* Informations personnelles */}
             <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b">
+              <h3 className="text-lg font-bold text-[#4169E1] mb-4 pb-2 border-b border-white/10">
                 Informations Personnelles
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Nom <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -304,11 +322,11 @@ export default function InscriptionPage() {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Prénom <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -317,11 +335,11 @@ export default function InscriptionPage() {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Email <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -330,11 +348,11 @@ export default function InscriptionPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Téléphone <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -343,11 +361,11 @@ export default function InscriptionPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Institution / Organisation <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -356,11 +374,11 @@ export default function InscriptionPage() {
                     value={formData.institution}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                     Pays <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -369,7 +387,7 @@ export default function InscriptionPage() {
                     value={formData.country}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                   />
                 </div>
               </div>
@@ -377,11 +395,11 @@ export default function InscriptionPage() {
 
             {/* Catégorie */}
             <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b">
+              <h3 className="text-lg font-bold text-[#4169E1] mb-4 pb-2 border-b border-white/10">
                 Catégorie de Participant
               </h3>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-[#B0B0B0] mb-1">
                   Sélectionnez votre catégorie <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -389,12 +407,12 @@ export default function InscriptionPage() {
                   value={formData.category}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#006400] focus:border-transparent"
+                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-[#4169E1] focus:border-transparent"
                 >
-                  <option value="">-- Choisir une catégorie --</option>
+                  <option value="" className="bg-[#1A1A1A]">-- Choisir une catégorie --</option>
                   {pricingCategories.map((p) => (
-                    <option key={p.category} value={p.category}>
-                      {p.category} - {formatPrice(p.price)}
+                    <option key={p.category} value={p.category} className="bg-[#1A1A1A]">
+                      {p.category} - {formatPrice(p.price)} FCFA
                     </option>
                   ))}
                 </select>
@@ -403,7 +421,7 @@ export default function InscriptionPage() {
 
             {/* Options */}
             <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b">
+              <h3 className="text-lg font-bold text-[#4169E1] mb-4 pb-2 border-b border-white/10">
                 Option Pré-Colloque
               </h3>
               <div className="space-y-3">
@@ -413,24 +431,24 @@ export default function InscriptionPage() {
                     name="workshop"
                     checked={formData.workshop}
                     onChange={handleChange}
-                    className="w-5 h-5 text-[#006400] border-gray-300 rounded focus:ring-[#006400] mt-0.5"
+                    className="w-5 h-5 text-[#4169E1] border-white/20 bg-white/5 rounded focus:ring-[#4169E1] mt-0.5"
                   />
                   <div>
-                    <span className="text-gray-700 font-medium">
-                      Ateliers de formation (23-24 mars) - <strong className="text-[#006400]">{formatPrice(workshopPrice)}</strong>
+                    <span className="text-white font-medium">
+                      Ateliers de formation (23-24 mars) - <strong className="text-[#4169E1]">{formatPrice(workshopPrice)} FCFA</strong>
                     </span>
-                    <p className="text-sm text-gray-500">Formation NVIVO et Introduction aux Équations structurelles (SEM)</p>
+                    <p className="text-sm text-[#B0B0B0]">Formation NVIVO et Introduction aux Équations structurelles (SEM)</p>
                   </div>
                 </label>
               </div>
-              <p className="text-sm text-gray-500 mt-3">
+              <p className="text-sm text-[#B0B0B0] mt-3">
                 Note : La soirée de gala est incluse dans les frais d&apos;inscription (sauf catégorie Étudiants).
               </p>
             </div>
 
             {/* Mode de paiement */}
             <div className="mb-8">
-              <h3 className="text-lg font-bold text-[#006400] mb-4 pb-2 border-b">
+              <h3 className="text-lg font-bold text-[#4169E1] mb-4 pb-2 border-b border-white/10">
                 Mode de Paiement
               </h3>
               <div className="grid md:grid-cols-3 gap-4">
@@ -439,8 +457,8 @@ export default function InscriptionPage() {
                     key={method.id}
                     className={`relative flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${
                       formData.paymentMethod === method.id
-                        ? 'border-[#006400] bg-green-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-[#4169E1] bg-[#4169E1]/10'
+                        : 'border-white/10 hover:border-white/20'
                     }`}
                   >
                     <input
@@ -452,10 +470,10 @@ export default function InscriptionPage() {
                       className="sr-only"
                     />
                     <method.icon className={`w-8 h-8 mb-2 ${
-                      formData.paymentMethod === method.id ? 'text-[#006400]' : 'text-gray-400'
+                      formData.paymentMethod === method.id ? 'text-[#4169E1]' : 'text-[#B0B0B0]'
                     }`} />
-                    <span className="font-medium text-sm text-center">{method.name}</span>
-                    <span className="text-xs text-gray-500 text-center">{method.description}</span>
+                    <span className="font-medium text-sm text-center text-white">{method.name}</span>
+                    <span className="text-xs text-[#B0B0B0] text-center">{method.description}</span>
                   </label>
                 ))}
               </div>
@@ -463,23 +481,23 @@ export default function InscriptionPage() {
 
             {/* Récapitulatif */}
             {formData.category && (
-              <div className="mb-8 bg-gray-50 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-[#006400] mb-4">Récapitulatif</h3>
+              <div className="mb-8 bg-white/5 rounded-xl p-6 border border-white/10">
+                <h3 className="text-lg font-bold text-[#4169E1] mb-4">Récapitulatif</h3>
                 <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Inscription ({formData.category})</span>
-                    <span>{formatPrice(pricingCategories.find(p => p.category === formData.category)?.price || 0)}</span>
+                  <div className="flex justify-between text-[#B0B0B0]">
+                    <span>Inscription ({formData.category})</span>
+                    <span className="text-white">{formatPrice(pricingCategories.find(p => p.category === formData.category)?.price || 0)} FCFA</span>
                   </div>
                   {formData.workshop && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Ateliers pré-colloque (NVIVO + SEM)</span>
-                      <span>{formatPrice(workshopPrice)}</span>
+                    <div className="flex justify-between text-[#B0B0B0]">
+                      <span>Ateliers pré-colloque (NVIVO + SEM)</span>
+                      <span className="text-white">{formatPrice(workshopPrice)} FCFA</span>
                     </div>
                   )}
-                  <div className="border-t pt-2 mt-2">
+                  <div className="border-t border-white/10 pt-2 mt-2">
                     <div className="flex justify-between font-bold text-lg">
-                      <span className="text-[#006400]">Total</span>
-                      <span className="text-[#006400]">{formatPrice(calculateTotal())}</span>
+                      <span className="text-white">Total</span>
+                      <span className="text-[#4169E1]">{formatPrice(calculateTotal())} FCFA</span>
                     </div>
                   </div>
                 </div>
@@ -495,9 +513,9 @@ export default function InscriptionPage() {
                   checked={formData.acceptTerms}
                   onChange={handleChange}
                   required
-                  className="w-5 h-5 text-[#006400] border-gray-300 rounded focus:ring-[#006400] mt-0.5"
+                  className="w-5 h-5 text-[#4169E1] border-white/20 bg-white/5 rounded focus:ring-[#4169E1] mt-0.5"
                 />
-                <span className="text-gray-700 text-sm">
+                <span className="text-[#B0B0B0] text-sm">
                   J&apos;accepte les conditions générales de participation et la politique de confidentialité du CIL 2026. <span className="text-red-500">*</span>
                 </span>
               </label>
@@ -507,11 +525,12 @@ export default function InscriptionPage() {
             <button
               type="submit"
               disabled={isSubmitting || !formData.acceptTerms || !formData.category || !formData.paymentMethod}
-              className={`w-full py-4 rounded-lg font-bold text-white transition-all flex items-center justify-center ${
+              className={`w-full py-4 rounded-full font-bold text-white transition-all flex items-center justify-center ${
                 isSubmitting || !formData.acceptTerms || !formData.category || !formData.paymentMethod
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-[#006400] hover:bg-[#004d00]'
+                  ? 'bg-white/10 cursor-not-allowed'
+                  : 'bg-[#4169E1] hover:brightness-110'
               }`}
+              style={!(isSubmitting || !formData.acceptTerms || !formData.category || !formData.paymentMethod) ? { boxShadow: '0 0 30px rgba(65, 105, 225, 0.3)' } : {}}
             >
               {isSubmitting ? (
                 <>

@@ -10,6 +10,7 @@ const navigation = [
   { name: 'Programme', href: '/programme' },
   { name: 'Inscription', href: '/inscription' },
   { name: 'Comités', href: '/comites' },
+  { name: 'Archives', href: '/archives' },
   { name: 'Contact', href: '/infos-pratiques' },
 ];
 
@@ -33,12 +34,12 @@ export default function Header() {
         <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
-            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-[#00D9C5] to-[#B8B5FF] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <span className="text-black font-bold text-xs sm:text-sm">CIL</span>
+            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-[#4169E1] to-[#D4AF37] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span className="text-white font-bold text-xs sm:text-sm">CIL</span>
             </div>
             <div className="hidden xs:block sm:block">
-              <span className="font-bold text-white text-sm sm:text-lg">CIL 2026</span>
-              <span className="hidden sm:block text-xs text-[#B0B0B0]">Libreville • 23-27 Mars</span>
+              <span className="font-bold text-[#4169E1] text-sm sm:text-lg">CIL 2026</span>
+              <span className="hidden sm:block text-xs text-[#B0B0B0]">12è édition • Libreville</span>
             </div>
           </Link>
 
@@ -48,26 +49,26 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium text-[#B0B0B0] hover:text-[#00D9C5] transition-colors relative group"
+                className="px-4 py-2 text-sm font-medium text-[#B0B0B0] hover:text-[#4169E1] transition-colors relative group"
               >
                 {item.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#00D9C5] group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#4169E1] group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
           </div>
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Link 
-              href="/appel-communications" 
-              className="px-5 py-2.5 text-sm font-medium text-[#00D9C5] border border-[#00D9C5]/30 rounded-full hover:bg-[#00D9C5]/10 transition-all"
+            <Link
+              href="/appel-communications"
+              className="px-5 py-2.5 text-sm font-medium text-[#4169E1] border border-[#4169E1]/30 rounded-full hover:bg-[#4169E1]/10 transition-all"
             >
               Appel à papiers
             </Link>
-            <Link 
-              href="/inscription" 
-              className="px-5 py-2.5 text-sm font-semibold text-black bg-[#00D9C5] rounded-full hover:scale-105 transition-all"
-              style={{ boxShadow: '0 0 20px rgba(0, 217, 197, 0.3)' }}
+            <Link
+              href="/inscription"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-[#4169E1] rounded-full hover:scale-105 transition-all"
+              style={{ boxShadow: '0 0 20px rgba(65, 105, 225, 0.3)' }}
             >
               S&apos;inscrire
             </Link>
@@ -95,7 +96,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[#B0B0B0] hover:text-[#00D9C5] hover:bg-white/5 rounded-lg transition-colors"
+                  className="px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-[#B0B0B0] hover:text-[#4169E1] hover:bg-white/5 rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -104,14 +105,14 @@ export default function Header() {
               <div className="flex flex-col space-y-2 pt-3 sm:pt-4 mt-2 border-t border-white/10">
                 <Link
                   href="/appel-communications"
-                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-[#00D9C5] border border-[#00D9C5]/30 rounded-full"
+                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-[#4169E1] border border-[#4169E1]/30 rounded-full"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Appel à papiers
                 </Link>
                 <Link
                   href="/inscription"
-                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-black bg-[#00D9C5] rounded-full font-semibold"
+                  className="py-2.5 sm:py-3 text-center text-sm sm:text-base text-white bg-[#4169E1] rounded-full font-semibold"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   S&apos;inscrire

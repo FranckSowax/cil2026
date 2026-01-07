@@ -18,15 +18,15 @@ export default function PanierPage() {
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden">
         <div className="absolute inset-0 mesh-gradient"></div>
-        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#00D9C5]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
+        <div className="absolute top-10 sm:top-20 right-5 sm:right-10 w-40 sm:w-72 h-40 sm:h-72 bg-[#4169E1]/10 rounded-full filter blur-[80px] sm:blur-[100px]"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 border border-white/10 rounded-full mb-4 sm:mb-6">
-              <ShoppingCart className="w-3 sm:w-4 h-3 sm:h-4 text-[#00D9C5] mr-2" />
+              <ShoppingCart className="w-3 sm:w-4 h-3 sm:h-4 text-[#4169E1] mr-2" />
               <span className="text-xs sm:text-sm text-[#B0B0B0]">{items.length} article{items.length !== 1 ? 's' : ''} dans votre panier</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight">
-              Votre <span className="text-[#00D9C5]">Panier</span>
+              Votre <span className="text-[#4169E1]">Panier</span>
             </h1>
           </div>
         </div>
@@ -42,9 +42,9 @@ export default function PanierPage() {
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">Votre panier est vide</h2>
               <p className="text-[#B0B0B0] mb-8">Choisissez une formule d&apos;inscription pour commencer</p>
-              <Link 
+              <Link
                 href="/inscription"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#00D9C5] text-black font-bold rounded-full hover:scale-105 transition-all text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#4169E1] text-white font-bold rounded-full hover:scale-105 transition-all text-sm sm:text-base"
               >
                 Voir les tarifs
                 <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
@@ -64,7 +64,7 @@ export default function PanierPage() {
                         <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{item.name}</h3>
                         <p className="text-[#B0B0B0] text-sm mb-3">{item.category}</p>
                         <div className="flex items-center gap-4">
-                          <span className="text-[#00D9C5] font-bold text-lg sm:text-xl">
+                          <span className="text-[#4169E1] font-bold text-lg sm:text-xl">
                             {formatPrice(item.price)} FCFA
                           </span>
                         </div>
@@ -81,24 +81,24 @@ export default function PanierPage() {
 
                 {/* Workshop Option */}
                 <div className={`bg-[#1A1A1A] rounded-2xl sm:rounded-3xl p-4 sm:p-6 border transition-all ${
-                  workshop ? 'border-[#00D9C5]/50 bg-[#00D9C5]/5' : 'border-white/10'
+                  workshop ? 'border-[#4169E1]/50 bg-[#4169E1]/5' : 'border-white/10'
                 }`}>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-grow">
                       <div className="flex items-center gap-2 mb-1">
-                        <Sparkles className="w-4 h-4 text-[#B8B5FF]" />
+                        <Sparkles className="w-4 h-4 text-[#D4AF37]" />
                         <h3 className="text-lg sm:text-xl font-bold text-white">Ateliers Pré-Colloque</h3>
                       </div>
                       <p className="text-[#B0B0B0] text-sm mb-3">Formation NVIVO + Équations Structurelles (SEM)</p>
-                      <span className="text-[#00D9C5] font-bold text-lg sm:text-xl">
+                      <span className="text-[#4169E1] font-bold text-lg sm:text-xl">
                         +{formatPrice(workshopPrice)} FCFA
                       </span>
                     </div>
                     <button
                       onClick={() => setWorkshop(!workshop)}
                       className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${
-                        workshop 
-                          ? 'bg-[#00D9C5] text-black' 
+                        workshop
+                          ? 'bg-[#4169E1] text-white'
                           : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
                       }`}
                     >
@@ -140,14 +140,14 @@ export default function PanierPage() {
                   <div className="border-t border-white/10 pt-4 mb-6">
                     <div className="flex justify-between">
                       <span className="text-white font-bold">Total</span>
-                      <span className="text-[#00D9C5] font-bold text-xl">{formatPrice(getTotal())} FCFA</span>
+                      <span className="text-[#4169E1] font-bold text-xl">{formatPrice(getTotal())} FCFA</span>
                     </div>
                   </div>
 
                   <Link
                     href="/checkout"
-                    className="block w-full py-3 sm:py-4 text-center bg-[#00D9C5] text-black font-bold rounded-full hover:scale-105 transition-all text-sm sm:text-base"
-                    style={{ boxShadow: '0 0 30px rgba(0, 217, 197, 0.3)' }}
+                    className="block w-full py-3 sm:py-4 text-center bg-[#4169E1] text-white font-bold rounded-full hover:scale-105 transition-all text-sm sm:text-base"
+                    style={{ boxShadow: '0 0 30px rgba(65, 105, 225, 0.3)' }}
                   >
                     Procéder au paiement
                   </Link>

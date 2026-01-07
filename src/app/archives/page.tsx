@@ -1,0 +1,211 @@
+import { Calendar, MapPin, Users, FileText, ExternalLink } from "lucide-react";
+
+// Historique des éditions du CIL
+const editions = [
+  {
+    year: 2024,
+    edition: "11ème",
+    theme: "Économie numérique et transformation des organisations en Afrique",
+    dates: "Mars 2024",
+    lieu: "Libreville, Gabon",
+    participants: "150+",
+    communications: "80+",
+  },
+  {
+    year: 2023,
+    edition: "10ème",
+    theme: "Développement durable et responsabilité sociétale des organisations",
+    dates: "Mars 2023",
+    lieu: "Libreville, Gabon",
+    participants: "130+",
+    communications: "70+",
+  },
+  {
+    year: 2022,
+    edition: "9ème",
+    theme: "Innovation et entrepreneuriat en Afrique",
+    dates: "Mars 2022",
+    lieu: "En ligne (Covid-19)",
+    participants: "100+",
+    communications: "55+",
+  },
+  {
+    year: 2021,
+    edition: "8ème",
+    theme: "Gestion de crise et résilience organisationnelle",
+    dates: "Mars 2021",
+    lieu: "En ligne (Covid-19)",
+    participants: "90+",
+    communications: "50+",
+  },
+  {
+    year: 2019,
+    edition: "7ème",
+    theme: "Management et performance des organisations africaines",
+    dates: "Mars 2019",
+    lieu: "Libreville, Gabon",
+    participants: "120+",
+    communications: "65+",
+  },
+  {
+    year: 2018,
+    edition: "6ème",
+    theme: "Gouvernance et développement des territoires",
+    dates: "Mars 2018",
+    lieu: "Libreville, Gabon",
+    participants: "110+",
+    communications: "60+",
+  },
+  {
+    year: 2017,
+    edition: "5ème",
+    theme: "Ressources humaines et compétitivité des entreprises",
+    dates: "Mars 2017",
+    lieu: "Libreville, Gabon",
+    participants: "100+",
+    communications: "55+",
+  },
+  {
+    year: 2016,
+    edition: "4ème",
+    theme: "Stratégies d'entreprises et développement économique",
+    dates: "Mars 2016",
+    lieu: "Libreville, Gabon",
+    participants: "90+",
+    communications: "50+",
+  },
+  {
+    year: 2015,
+    edition: "3ème",
+    theme: "Finance et croissance économique en Afrique",
+    dates: "Mars 2015",
+    lieu: "Libreville, Gabon",
+    participants: "85+",
+    communications: "45+",
+  },
+  {
+    year: 2014,
+    edition: "2ème",
+    theme: "Entrepreneuriat et développement local",
+    dates: "Mars 2014",
+    lieu: "Libreville, Gabon",
+    participants: "70+",
+    communications: "40+",
+  },
+  {
+    year: 2013,
+    edition: "1ère",
+    theme: "Sciences de gestion et développement en Afrique",
+    dates: "Mars 2013",
+    lieu: "Libreville, Gabon",
+    participants: "60+",
+    communications: "35+",
+  },
+];
+
+// Statistiques globales
+const globalStats = [
+  { value: "11", label: "Éditions réalisées" },
+  { value: "1000+", label: "Participants cumulés" },
+  { value: "600+", label: "Communications" },
+  { value: "15+", label: "Pays représentés" },
+];
+
+export default function ArchivesPage() {
+  return (
+    <div className="bg-[#0A0A0A] min-h-screen pt-24 sm:pt-28">
+      {/* Hero Section */}
+      <section className="py-12 sm:py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              Archives du <span className="text-[#4169E1]">CIL</span>
+            </h1>
+            <p className="text-[#B0B0B0] text-base sm:text-lg max-w-2xl mx-auto">
+              Découvrez l&apos;histoire du Colloque International de Libreville depuis sa création en 2013
+            </p>
+          </div>
+
+          {/* Statistiques globales */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16">
+            {globalStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-[#1A1A1A] rounded-xl p-6 border border-white/10 text-center"
+              >
+                <div className="text-3xl sm:text-4xl font-bold text-[#4169E1] mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-[#B0B0B0] text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Timeline des éditions */}
+          <div className="space-y-6">
+            {editions.map((edition, index) => (
+              <div
+                key={edition.year}
+                className={`bg-[#1A1A1A] rounded-2xl p-6 sm:p-8 border transition-all duration-300 hover:border-[#4169E1]/30 ${
+                  index === 0 ? "border-[#4169E1]/50" : "border-white/10"
+                }`}
+              >
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="px-3 py-1 bg-[#4169E1]/20 text-[#4169E1] rounded-full text-sm font-semibold">
+                        {edition.edition} édition
+                      </span>
+                      <span className="text-[#D4AF37] font-bold text-lg">
+                        {edition.year}
+                      </span>
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-3">
+                      {edition.theme}
+                    </h3>
+                    <div className="flex flex-wrap gap-4 text-sm text-[#B0B0B0]">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-[#4169E1]" />
+                        {edition.dates}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-[#4169E1]" />
+                        {edition.lieu}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-6 lg:gap-8">
+                    <div className="text-center">
+                      <div className="flex items-center justify-center w-12 h-12 bg-[#4169E1]/10 rounded-full mb-2 mx-auto">
+                        <Users className="w-5 h-5 text-[#4169E1]" />
+                      </div>
+                      <div className="text-white font-bold">{edition.participants}</div>
+                      <div className="text-[#B0B0B0] text-xs">Participants</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="flex items-center justify-center w-12 h-12 bg-[#4169E1]/10 rounded-full mb-2 mx-auto">
+                        <FileText className="w-5 h-5 text-[#4169E1]" />
+                      </div>
+                      <div className="text-white font-bold">{edition.communications}</div>
+                      <div className="text-[#B0B0B0] text-xs">Communications</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Note */}
+          <div className="mt-12 bg-[#1A1A1A] rounded-xl p-6 border border-white/10 text-center">
+            <p className="text-[#B0B0B0] text-sm">
+              Pour accéder aux actes et publications des éditions précédentes, veuillez contacter :{" "}
+              <a href="mailto:larsigist@yahoo.fr" className="text-[#4169E1] hover:underline">
+                larsigist@yahoo.fr
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
