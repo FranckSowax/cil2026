@@ -265,7 +265,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Texte justifié sur toutes les pages */
-p, .text-justify {
+/* Texte justifié uniquement pour les paragraphes (pas les titres) */
+p:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   text-align: justify;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Titres toujours centrés */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
 }

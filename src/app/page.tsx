@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Countdown from "@/components/Countdown";
-import { Calendar, MapPin, ArrowRight, Check, ChevronRight, Users, Mic, Globe, Zap, GraduationCap, Briefcase, BookOpen, Building2, Award, Flag } from "lucide-react";
+import CarteParticipants from "@/components/CarteParticipants";
+import { ArrowRight, Check, ChevronRight, Users, Mic, Globe, Zap, GraduationCap, Briefcase, BookOpen, Building2, Award } from "lucide-react";
 
 // Date du colloque - 25 mars 2026
 const eventDate = new Date('2026-03-25T09:00:00');
@@ -54,13 +55,6 @@ const participantProfiles = [
   { icon: Building2, label: "Décideurs publics" },
   { icon: Briefcase, label: "Entrepreneurs" },
   { icon: Users, label: "Chercheurs" },
-];
-
-// Continents et pays participants
-const continents = [
-  { name: "Afrique", countries: ["Gabon", "Cameroun", "Côte d'Ivoire", "Sénégal", "Burkina Faso", "Bénin", "Togo", "Mali", "Niger", "RDC", "Congo", "Maroc", "Tunisie"] },
-  { name: "Europe", countries: ["France", "Belgique", "Suisse", "Allemagne"] },
-  { name: "Amérique", countries: ["Canada", "États-Unis"] },
 ];
 
 // Partenaires
@@ -241,10 +235,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section Géographique - Pays et Continents - Transparent (Blue Gradient) */}
+      {/* Section Géographique - Carte Interactive - Transparent (Blue Gradient) */}
       <section className="py-16 sm:py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Participation <span className="text-blue-200">Internationale</span>
             </h2>
@@ -253,31 +247,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {continents.map((continent) => (
-              <div
-                key={continent.name}
-                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
-              >
-                <div className="flex items-center mb-6">
-                  <div className="p-2 bg-white/10 rounded-lg mr-4">
-                    <Flag className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">{continent.name}</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {continent.countries.map((country) => (
-                    <span
-                      key={country}
-                      className="px-3 py-1.5 bg-white/20 border border-white/10 rounded-full text-sm font-medium text-white shadow-sm"
-                    >
-                      {country}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <CarteParticipants />
         </div>
       </section>
 
