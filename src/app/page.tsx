@@ -433,16 +433,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section - Transparent (Blue Gradient) */}
+      {/* CTA Section - Background Image BACKCIL avec overlay bleu */}
       <section className="py-20 sm:py-32 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 rounded-full filter blur-[150px]"></div>
-        </div>
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-parallax"
+          style={{ backgroundImage: "url('/images/BACKCIL.jpg')" }}
+        ></div>
+        {/* Overlay bleu */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/85 via-[#4169E1]/80 to-[#4169E1]/90"></div>
+        {/* Decorative blur */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 rounded-full filter blur-[150px]"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight drop-shadow-lg">
             Prêt à rejoindre le <span className="text-blue-200">CIL 2026</span> ?
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed text-center">
             Rejoignez plus de 1000 chercheurs, praticiens et décideurs pour explorer
             l&apos;avenir de l&apos;IA en Afrique.
           </p>
