@@ -112,24 +112,24 @@ export default function PresentationPage() {
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
+            <div className="text-center">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">À propos du colloque</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed text-lg">
-                L&apos;intelligence artificielle (IA) s&apos;impose aujourd&apos;hui comme un moteur majeur des transformations 
-                contemporaines, aussi bien dans les secteurs publics que privés. L&apos;ampleur des innovations 
-                technologiques récentes reconfigure les modes de production, les pratiques décisionnelles, 
+              <p className="text-gray-600 mb-6 leading-relaxed text-lg text-center">
+                L&apos;intelligence artificielle (IA) s&apos;impose aujourd&apos;hui comme un moteur majeur des transformations
+                contemporaines, aussi bien dans les secteurs publics que privés. L&apos;ampleur des innovations
+                technologiques récentes reconfigure les modes de production, les pratiques décisionnelles,
                 la gestion des organisations et, plus largement, les dynamiques sociales, économiques et culturelles.
               </p>
-              <p className="text-gray-600 mb-6 leading-relaxed text-lg">
-                Le <strong className="text-[#4169E1]">12ème Colloque International de Libreville (CIL2026)</strong> s&apos;inscrit 
-                dans la continuité d&apos;une tradition scientifique visant à questionner les mutations profondes des 
+              <p className="text-gray-600 mb-6 leading-relaxed text-lg text-center">
+                Le <strong className="text-[#4169E1]">12ème Colloque International de Libreville (CIL2026)</strong> s&apos;inscrit
+                dans la continuité d&apos;une tradition scientifique visant à questionner les mutations profondes des
                 organisations et des sociétés, à l&apos;aune des avancées technologiques et des impératifs de durabilité.
               </p>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                En Afrique, ces transformations prennent une dimension particulière. Les défis structurels 
-                (fragilité institutionnelle, infrastructures numériques limitées) complexifient l&apos;intégration 
-                des technologies intelligentes. Simultanément, le continent se distingue par une 
-                <strong className="text-[#4169E1]"> remarquable créativité sociale</strong>, des innovations endogènes 
+              <p className="text-gray-600 leading-relaxed text-lg text-center">
+                En Afrique, ces transformations prennent une dimension particulière. Les défis structurels
+                (fragilité institutionnelle, infrastructures numériques limitées) complexifient l&apos;intégration
+                des technologies intelligentes. Simultanément, le continent se distingue par une
+                <strong className="text-[#4169E1]"> remarquable créativité sociale</strong>, des innovations endogènes
                 et une volonté croissante de reconquête de la souveraineté numérique.
               </p>
             </div>
